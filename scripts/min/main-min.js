@@ -46,8 +46,19 @@ var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 var fullDate = months[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
 
 $().ready(function(){
+  // Displays formatted date
   $('.today').text(fullDate);
+  // Display current account balance
   $('.acctbalance').text("$" + jdoeBalance);
+
+  // Display portfolio details
+  var investmentHTML = "";
+  for (var i = 0; i < jdoeAccount.length; i++) {
+    var invbalance = jdoeAccount[i].balance.toFixed(2);
+    investmentHTML += `<p>${jdoeAccount[i].fundname}   $${invbalance}</p>`
+  }
+  $('.container').append($(investmentHTML));
+
 })
 
 
