@@ -28,6 +28,24 @@ var jdoe4 = new Account(1, "NAESX", "Vanguard Small-Cap Index", "Small Cap", 64.
 
 var jdoe5 = new Account(1, "VGSTX", "Vanguard International Index", "International", 26.21, 57.230, 1500)
 
-var jdoeBalance = [jdoe1, jdoe2, jdoe3, jdoe4, jdoe5];
+var jdoeAccount = [jdoe1, jdoe2, jdoe3, jdoe4, jdoe5];
+
+function totalBalance(account) {
+  var total = 0;
+  for (var i = 0; i < account.length; i++) {
+    total += account[i].balance;
+  }
+  return total;
+}
+
+var jdoeBalance = totalBalance(jdoeAccount);
+
+var date = new Date();
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+var fullDate = months[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
+
+$().ready(function(){
+  $('.today').text(fullDate);
+})
 
 
