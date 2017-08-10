@@ -78,6 +78,9 @@ function genData(arr) {
 }
 
 var myPieChart = {};
+var myConChart = {};
+var myModChart = {};
+var myAggChart = {};
 
 // run the below when the page loads
 $().ready(function(){
@@ -90,8 +93,6 @@ $().ready(function(){
   displayPortDetails();
 
   //Generate portfolio chart
-  var portChart = $("#portChart");
-
   var options = {
       layout: {
         padding: {
@@ -108,14 +109,46 @@ $().ready(function(){
       }
     }
 
+  var portChart = $("#portChart");
+
   myPieChart = new Chart(portChart,{
     type: 'doughnut',
     data: genData(userAccount),
     options: options
   })
 
+  //generate the 3 static portfolio charts:
+  var conChart = $("#conChart");
+
+  myConChart = new Chart(conChart,{
+    type: 'doughnut',
+    data: genData(conPort),
+    options: options
+  })
+
+  var modChart = $("#modChart");
+
+  myModChart = new Chart(modChart,{
+    type: 'doughnut',
+    data: genData(modPort),
+    options: options
+  })
+
+  var aggChart = $("#aggChart");
+
+  myAggChart = new Chart(aggChart,{
+    type: 'doughnut',
+    data: genData(aggPort),
+    options: options
+  })
+
   //button to refresh chart
-  $('#chartRefresh').on('click',function(){
+  $('#conSelect').on('click',function(){
+    userAccount = []
+    for (var i = 0; i < conPort.length; i++) {
+      var userAcctData = new Account(user.id, conPort[i].ticker, conPort[i].fundname, conPort[i].category, conPort[i].price, +(conPort[i].balance * userBalance / conPort[i].price).toFixed(3), +(conPort[i].balance * userBalance).toFixed(2))
+      userAccount.push(userAcctData)
+    }
     myPieChart.data = genData(userAccount);
     myPieChart.update();
     displayPortDetails();
