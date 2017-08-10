@@ -63,7 +63,56 @@ $().ready(function(){
     var invbalance = jdoeAccount[i].balance.toFixed(2);
     investmentHTML += `<p>${jdoeAccount[i].fundname}   $${invbalance}</p>`
   }
-  $('.container').append($(investmentHTML));
+  $('.data').append($(investmentHTML));
+
+  //Create sample pie Chart
+
+  var ctx = $("#myChart");
+
+  data = {
+    datasets: [{
+      data: [25, 50, 25],
+      backgroundColor: [
+        'rgba(255,0,0,0.2)',
+        'rgba(255,255,0,0.2)',
+        'rgba(0,0,255,0.2)'
+      ],
+      borderWidth: 1,
+      borderColor: [
+        'rgba(0,0,0,1)',
+        'rgba(0,0,0,1)',
+        'rgba(0,0,0,1)'
+      ]
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+      'Red',
+      'Yellow',
+      'Blue'
+    ]
+  };
+
+  var options = {
+      layout: {
+        padding: {
+          left: 75,
+          right: 75,
+          top: 0,
+          bottom: 0
+        }
+            },
+      cutoutPercentage: 30
+    }
+
+
+  var myPieChart = new Chart(ctx,{
+    type: 'doughnut',
+    data: data,
+    options: options
+  });
+
+
 
 })
 
