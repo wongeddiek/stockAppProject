@@ -21,39 +21,32 @@ function displayPortDetails() {
   $('.data').html(portfolioHTML);
   for (var i = 0; i < userAccount.length; i++) {
     var invbalance = userAccount[i].balance.toFixed(2);
-    portfolioHTML += `<p>${userAccount[i].fundname}   $${invbalance}</p>`
+    portfolioHTML += `<p class="${userAccount[i].ticker}">${userAccount[i].category} ${userAccount[i].fundname}   $${invbalance}</p>`
   }
   $('.data').html(portfolioHTML);
 }
 
-// run the below when the page loads
-$().ready(function(){
-  // Displays formatted date
-  $('.today').text(fullDate);
-  // Display current account balance
-  $('.acctbalance').text("$" + userBalance);
-
-  // Calls Investment Details function
-  displayPortDetails();
-
-  //Create sample pie Chart
-
-  //grab account balance into an array
-  var acctChartData = [];
+// Chart data generation functions
+function genChartData() {
+  var data = [];
   for (var i = 0; i < userAccount.length; i++) {
-    acctChartData.push(userAccount[i].balance);
+    data.push(userAccount[i].balance);
   }
+  return data;
+}
 
-  var acctChartLegend = [];
+function genChartLegend() {
+  var legend = [];
   for (var i = 0; i < userAccount.length; i++) {
-    acctChartLegend.push(userAccount[i].category);
+    legend.push(userAccount[i].category);
   }
+  return legend;
+}
 
-  var portChart = $("#portChart");
-
-  data = {
+function genData() {
+  var data = {
     datasets: [{
-      data: acctChartData,
+      data: genChartData(),
       backgroundColor: [
         'rgba(255,0,0,0.2)',
         'rgba(255,255,0,0.2)',
@@ -79,8 +72,25 @@ $().ready(function(){
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: acctChartLegend
+    labels: genChartLegend()
   }
+  return data;
+}
+
+var myPieChart = {};
+
+// run the below when the page loads
+$().ready(function(){
+  // Displays formatted date
+  $('.today').text(fullDate);
+  // Display current account balance
+  $('.acctbalance').text("$" + userBalance);
+
+  // Calls Investment Details function
+  displayPortDetails();
+
+  //Generate portfolio chart
+  var portChart = $("#portChart");
 
   var options = {
       layout: {
@@ -98,13 +108,17 @@ $().ready(function(){
       }
     }
 
-
-  var myPieChart = new Chart(portChart,{
+  myPieChart = new Chart(portChart,{
     type: 'doughnut',
-    data: data,
+    data: genData(),
     options: options
   })
 
-
+  //button to refresh chart
+  $('#chartRefresh').on('click',function(){
+    myPieChart.data = genData();
+    myPieChart.update();
+    displayPortDetails();
+  })
 
 })  //Ends $().ready function
