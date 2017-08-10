@@ -51,6 +51,8 @@ var date = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 var fullDate = months[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
 
+
+// run the below when the page loads
 $().ready(function(){
   // Displays formatted date
   $('.today').text(fullDate);
@@ -67,42 +69,64 @@ $().ready(function(){
 
   //Create sample pie Chart
 
+  //grab account balance into an array
+  var acctChartData = [];
+  for (var i = 0; i < jdoeAccount.length; i++) {
+    acctChartData.push(jdoeAccount[i].balance);
+  }
+
+  var acctChartLegend = [];
+  for (var i = 0; i < jdoeAccount.length; i++) {
+    acctChartLegend.push(jdoeAccount[i].category);
+  }
+
   var ctx = $("#myChart");
 
   data = {
     datasets: [{
-      data: [25, 50, 25],
+      data: acctChartData,
       backgroundColor: [
         'rgba(255,0,0,0.2)',
         'rgba(255,255,0,0.2)',
-        'rgba(0,0,255,0.2)'
+        'rgba(0,0,255,0.2)',
+        'rgba(100,100,200,0.2)',
+        'rgba(0,255,0,0.2)',
       ],
-      borderWidth: 1,
+      borderWidth: 5,
       borderColor: [
-        'rgba(0,0,0,1)',
-        'rgba(0,0,0,1)',
-        'rgba(0,0,0,1)'
-      ]
+        'rgba(255,255,255,1)',
+        'rgba(255,255,255,1)',
+        'rgba(255,255,255,1)',
+        'rgba(255,255,255,1)',
+        'rgba(255,255,255,1)',
+      ],
+      hoverBorderColor: [
+        'rgba(255,255,255,0)',
+        'rgba(255,255,255,0)',
+        'rgba(255,255,255,0)',
+        'rgba(255,255,255,0)',
+        'rgba(255,255,255,0)',
+      ],
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-      'Red',
-      'Yellow',
-      'Blue'
-    ]
-  };
+    labels: acctChartLegend
+  }
 
   var options = {
       layout: {
         padding: {
-          left: 75,
-          right: 75,
+          left: 0,
+          right: 0,
           top: 0,
           bottom: 0
         }
             },
-      cutoutPercentage: 30
+      cutoutPercentage: 30,
+
+      legend: {
+        position: 'bottom'
+      }
     }
 
 
@@ -110,10 +134,10 @@ $().ready(function(){
     type: 'doughnut',
     data: data,
     options: options
-  });
+  })
 
 
 
-})
+})  //Ends $().ready function
 
 
