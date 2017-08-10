@@ -27,26 +27,26 @@ function displayPortDetails() {
 }
 
 // Chart data generation functions
-function genChartData() {
+function genChartData(arr) {
   var data = [];
-  for (var i = 0; i < userAccount.length; i++) {
-    data.push(userAccount[i].balance);
+  for (var i = 0; i < arr.length; i++) {
+    data.push(arr[i].balance);
   }
   return data;
 }
 
-function genChartLegend() {
+function genChartLegend(arr) {
   var legend = [];
-  for (var i = 0; i < userAccount.length; i++) {
-    legend.push(userAccount[i].category);
+  for (var i = 0; i < arr.length; i++) {
+    legend.push(arr[i].category);
   }
   return legend;
 }
 
-function genData() {
+function genData(arr) {
   var data = {
     datasets: [{
-      data: genChartData(),
+      data: genChartData(arr),
       backgroundColor: [
         'rgba(255,0,0,0.2)',
         'rgba(255,255,0,0.2)',
@@ -72,7 +72,7 @@ function genData() {
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: genChartLegend()
+    labels: genChartLegend(arr)
   }
   return data;
 }
@@ -110,13 +110,13 @@ $().ready(function(){
 
   myPieChart = new Chart(portChart,{
     type: 'doughnut',
-    data: genData(),
+    data: genData(userAccount),
     options: options
   })
 
   //button to refresh chart
   $('#chartRefresh').on('click',function(){
-    myPieChart.data = genData();
+    myPieChart.data = genData(userAccount);
     myPieChart.update();
     displayPortDetails();
   })
