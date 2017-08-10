@@ -19,20 +19,20 @@ function Account(id, ticker, fundname, category, share, price, balance) {
 }
 
 // Creates sample user profile
-var jdoe = new User(1, "jdoe@example.com", "123456", "Joe", "Doe")
+var user = new User(1, "jdoe@example.com", "123456", "Joe", "Doe")
 
 // Creates sample user account
-var jdoe1 = new Account(1, "VBMFX", "Vanguard Total Bond Market Index", "Bond", 10.81, 370.028, 4000);
+var user1 = new Account(1, "VBMFX", "Vanguard Total Bond Market Index", "Bond", 10.81, 370.028, 4000);
 
-var jdoe2 = new Account (1, "VTSMX", "Vanguard Total Stock Market Index", "Large Cap", 61.63, 32.452, 2000)
+var user2 = new Account (1, "VTSMX", "Vanguard Total Stock Market Index", "Large Cap", 61.63, 32.452, 2000)
 
-var jdoe3 = new Account(1, "VIMSX", "Vanguard Mid-Cap Index", "Mid Cap", 39.27, 38.197, 1500)
+var user3 = new Account(1, "VIMSX", "Vanguard Mid-Cap Index", "Mid Cap", 39.27, 38.197, 1500)
 
-var jdoe4 = new Account(1, "NAESX", "Vanguard Small-Cap Index", "Small Cap", 64.69, 15.458, 1000)
+var user4 = new Account(1, "NAESX", "Vanguard Small-Cap Index", "Small Cap", 64.69, 15.458, 1000)
 
-var jdoe5 = new Account(1, "VGSTX", "Vanguard International Index", "International", 26.21, 57.230, 1500)
+var user5 = new Account(1, "VGSTX", "Vanguard International Index", "International", 26.21, 57.230, 1500)
 
-var jdoeAccount = [jdoe1, jdoe2, jdoe3, jdoe4, jdoe5];
+var userAccount = [user1, user2, user3, user4, user5];
 
 // function to sum all investment balances
 function totalBalance(account) {
@@ -44,40 +44,45 @@ function totalBalance(account) {
 }
 
 // creates sample user total account balance
-var jdoeBalance = totalBalance(jdoeAccount).toFixed(2);
+var userBalance = totalBalance(userAccount).toFixed(2);
 
 // creates and format current date in MMM dd yyyy format
 var date = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 var fullDate = months[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
 
+// Display Investment Details function
+function displayPortDetails() {
+  var portfolioHTML = "";
+  $('.data').html(portfolioHTML);
+  for (var i = 0; i < userAccount.length; i++) {
+    var invbalance = userAccount[i].balance.toFixed(2);
+    portfolioHTML += `<p>${userAccount[i].fundname}   $${invbalance}</p>`
+  }
+  $('.data').html(portfolioHTML);
+}
 
 // run the below when the page loads
 $().ready(function(){
   // Displays formatted date
   $('.today').text(fullDate);
   // Display current account balance
-  $('.acctbalance').text("$" + jdoeBalance);
+  $('.acctbalance').text("$" + userBalance);
 
-  // Display portfolio details
-  var investmentHTML = "";
-  for (var i = 0; i < jdoeAccount.length; i++) {
-    var invbalance = jdoeAccount[i].balance.toFixed(2);
-    investmentHTML += `<p>${jdoeAccount[i].fundname}   $${invbalance}</p>`
-  }
-  $('.data').append($(investmentHTML));
+  // Calls Investment Details function
+  displayPortDetails();
 
   //Create sample pie Chart
 
   //grab account balance into an array
   var acctChartData = [];
-  for (var i = 0; i < jdoeAccount.length; i++) {
-    acctChartData.push(jdoeAccount[i].balance);
+  for (var i = 0; i < userAccount.length; i++) {
+    acctChartData.push(userAccount[i].balance);
   }
 
   var acctChartLegend = [];
-  for (var i = 0; i < jdoeAccount.length; i++) {
-    acctChartLegend.push(jdoeAccount[i].category);
+  for (var i = 0; i < userAccount.length; i++) {
+    acctChartLegend.push(userAccount[i].category);
   }
 
   var ctx = $("#myChart");
