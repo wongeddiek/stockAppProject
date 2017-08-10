@@ -38,7 +38,8 @@ function totalBalance(account) {
   return total;
 }
 
-var jdoeBalance = totalBalance(jdoeAccount);
+var jdoeBalance = totalBalance(jdoeAccount).toFixed(2);
+
 
 var date = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -46,4 +47,5 @@ var fullDate = months[date.getMonth()] + " " + date.getDate() + " " + date.getFu
 
 $().ready(function(){
   $('.today').text(fullDate);
+  $('.acctbalance').text("$" + jdoeBalance);
 })
