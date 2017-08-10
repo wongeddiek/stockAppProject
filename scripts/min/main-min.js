@@ -48,11 +48,11 @@ function genData(arr) {
     datasets: [{
       data: genChartData(arr),
       backgroundColor: [
-        'rgba(255,0,0,0.2)',
-        'rgba(255,255,0,0.2)',
-        'rgba(0,0,255,0.2)',
-        'rgba(100,100,200,0.2)',
-        'rgba(0,255,0,0.2)',
+        'rgba(9, 82, 86, 0.7)',
+        'rgba(8, 127, 140, 0.7)',
+        'rgba(90, 170, 149, 0.7)',
+        'rgba(134, 168, 115, 0.7)',
+        'rgba(187, 159, 6, 0.7)',
       ],
       borderWidth: 5,
       borderColor: [
@@ -142,11 +142,32 @@ $().ready(function(){
     options: options
   })
 
-  //button to refresh chart
+  //button to transfer to a different portfolio
   $('#conSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < conPort.length; i++) {
       var userAcctData = new Account(user.id, conPort[i].ticker, conPort[i].fundname, conPort[i].category, conPort[i].price, +(conPort[i].balance * userBalance / conPort[i].price).toFixed(3), +(conPort[i].balance * userBalance).toFixed(2))
+      userAccount.push(userAcctData)
+    }
+    myPieChart.data = genData(userAccount);
+    myPieChart.update();
+    displayPortDetails();
+  })
+
+  $('#modSelect').on('click',function(){
+    userAccount = []
+    for (var i = 0; i < modPort.length; i++) {
+      var userAcctData = new Account(user.id, modPort[i].ticker, modPort[i].fundname, modPort[i].category, modPort[i].price, +(modPort[i].balance * userBalance / modPort[i].price).toFixed(3), +(modPort[i].balance * userBalance).toFixed(2))
+      userAccount.push(userAcctData)
+    }
+    myPieChart.data = genData(userAccount);
+    myPieChart.update();
+    displayPortDetails();
+  })
+  $('#aggSelect').on('click',function(){
+    userAccount = []
+    for (var i = 0; i < aggPort.length; i++) {
+      var userAcctData = new Account(user.id, aggPort[i].ticker, aggPort[i].fundname, aggPort[i].category, aggPort[i].price, +(aggPort[i].balance * userBalance / aggPort[i].price).toFixed(3), +(aggPort[i].balance * userBalance).toFixed(2))
       userAccount.push(userAcctData)
     }
     myPieChart.data = genData(userAccount);

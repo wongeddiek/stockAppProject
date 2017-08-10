@@ -55,33 +55,44 @@
         </div>
       </div>
     </div>
+    <div class="container col-sm-7">
+      <div class="container">
+        <p>Account Balance as of <span class="today"></span></p>
+        <p class="acctbalance"></p>
+      </div>
+      <div class="container chart">
+        <canvas id="portChart"></canvas>
+      </div>
+      <div class="container">
+        <p>Portfolio Details</p>
+      </div>
+      <div class="container data">
+      </div>
+    </div>
+    <div class="container col-sm-5">
 
-    <div class="container">
-      <p>Account Balance as of <span class="today"></span></p>
-      <p class="acctbalance"></p>
-    </div>
-    <div class="container chart">
-      <canvas id="portChart"></canvas>
-    </div>
-    <div class="container">
-      <p>Portfolio Details</p>
-    </div>
-    <div class="container data">
-    </div>
-    <div class="container chart">
       <p>Conservative Portfolio</p>
-      <canvas id="conChart"></canvas>
-    </div>
-    <div class="container">
+      <div class="container chart side">
+        <canvas id="conChart"></canvas>
+      </div>
       <button id="conSelect" type="button" name="button">Select This Portfolio and Transfer My Balance</button>
-    </div>
-    <div class="container chart">
+
+      <p></p>
+
       <p>Moderate Portfolio</p>
-      <canvas id="modChart"></canvas>
-    </div>
-    <div class="container chart">
+      <div class="container chart side">
+        <canvas id="modChart"></canvas>
+      </div>
+      <button id="modSelect" type="button" name="button">Select This Portfolio and Transfer My Balance</button>
+
+      <p></p>
+
       <p>Aggressive Portfolio</p>
-      <canvas id="aggChart"></canvas>
+      <div class="container chart side">
+        <canvas id="aggChart"></canvas>
+      </div>
+      <button id="aggSelect" type="button" name="button">Select This Portfolio and Transfer My Balance</button>
+
     </div>
 
 

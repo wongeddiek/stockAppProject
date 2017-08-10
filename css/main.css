@@ -6,3 +6,8 @@
   max-width: 500px;
   max-height: 500px;
 }
+
+.side {
+  max-width: 300px;
+  max-height: 300px;
+}
