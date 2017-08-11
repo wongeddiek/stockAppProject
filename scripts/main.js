@@ -45,7 +45,8 @@ function displayInvPortDetails(arr, classname) {
 function invModalInfo(fund) {
   for (var i = 0; i < userAccount.length; i++) {
     if (userAccount[i].ticker === fund) {
-      $('#modal-fundname').html(userAccount[i].fundname);
+      var url = `https://www.morningstar.com/funds/xnas/${userAccount[i].ticker}/quote.html`
+      $('#modal-fundname').html(`<a href=${url} target="_blank">` + userAccount[i].fundname +`</a>`);
       $('#modal-ticker').html(userAccount[i].ticker);
       $('#modal-category').html(userAccount[i].category);
       $('#modal-nav').html(userAccount[i].price);
@@ -298,6 +299,7 @@ $().ready(function(){
     displayMyPortDetails();
     addInvInfoListeners();
   })
+
   $('#aggSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < aggPort.length; i++) {
