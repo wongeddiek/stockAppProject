@@ -148,7 +148,7 @@ $().ready(function(){
   addInvInfoListeners();
 
 
-  //Generate portfolio chart
+  //generate chart options for my portfolio chart
   var options = {
       layout: {
         padding: {
@@ -157,12 +157,25 @@ $().ready(function(){
           top: 0,
           bottom: 0
         }
-            },
+      },
+
       cutoutPercentage: 30,
 
       legend: {
         display: false,
-        position: 'bottom'
+      },
+
+      tooltips: {
+        bodyFontSize: 16,
+        caretSize: 0,
+        xPadding: 10,
+        yPadding: 10,
+
+        callbacks: {
+          label: function(tooltipItem, chartData) {
+            return chartData.labels[tooltipItem.index] + " " + " $" + (chartData.datasets[0].data[tooltipItem.index]).toFixed(2);
+          }
+        }
       },
 
       animation: {
@@ -170,43 +183,80 @@ $().ready(function(){
       },
     }
 
+    //generate chart options for individual portfolio charts
+    var optionsInd = {
+        layout: {
+          padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        },
+
+        cutoutPercentage: 30,
+
+        legend: {
+          display: false,
+        },
+
+        tooltips: {
+          bodyFontSize: 16,
+          caretSize: 0,
+          xPadding: 10,
+          yPadding: 10,
+
+          callbacks: {
+            label: function(tooltipItem, chartData) {
+              return chartData.labels[tooltipItem.index] + " " + " " + ((chartData.datasets[0].data[tooltipItem.index]) * 100) + "%";
+            }
+          }
+        },
+
+        animation: {
+          duration: 2000,
+        },
+      }
+
+  // grabbing the html canvas element
   var portChart = $("#portChart");
 
+  //initialize the chart
   myPieChart = new Chart(portChart,{
     type: 'doughnut',
     data: genData(userAccount),
     options: options
   })
 
+  //generate the 3 static portfolio charts:
+  var conChart = $("#conChart");
+
+  myConChart = new Chart(conChart,{
+    type: 'doughnut',
+    data: [25,25,25,25],
+    options: optionsInd
+  })
+
+  var modChart = $("#modChart");
+
+  myModChart = new Chart(modChart,{
+    type: 'doughnut',
+    data: [25,25,25,25],
+    options: optionsInd
+  })
+
+  var aggChart = $("#aggChart");
+
+  myAggChart = new Chart(aggChart,{
+    type: 'doughnut',
+    data: [25,25,25,25],
+    options: optionsInd
+  })
+
   //Calls Individual Portfolio functions
   displayInvPortDetails(conPort, '.con-data')
   displayInvPortDetails(modPort, '.mod-data')
   displayInvPortDetails(aggPort, '.agg-data')
-
-  //generate the 3 static portfolio charts:
-    var conChart = $("#conChart");
-
-    myConChart = new Chart(conChart,{
-      type: 'doughnut',
-      data: [25,25,25,25],
-      options: options
-    })
-
-    var modChart = $("#modChart");
-
-    myModChart = new Chart(modChart,{
-      type: 'doughnut',
-      data: [25,25,25,25],
-      options: options
-    })
-
-    var aggChart = $("#aggChart");
-
-    myAggChart = new Chart(aggChart,{
-      type: 'doughnut',
-      data: [25,25,25,25],
-      options: options
-    })
 
   // Refresh the individual portfolios on click
   $('.btn-conport').on('click', function(){
@@ -224,8 +274,7 @@ $().ready(function(){
     myAggChart.update();
   })
 
-
-  //button to transfer to a different portfolio
+  //buttons to transfer to a different portfolio
   $('#conSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < conPort.length; i++) {

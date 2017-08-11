@@ -32,3 +32,7 @@
 #modal-fundname {
   margin-bottom: 20px;
 }
+
+.modal-header {
+  padding: 5px 15px;
+}
