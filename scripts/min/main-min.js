@@ -16,7 +16,7 @@ var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 var fullDate = months[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
 
 // Display Investment Details function
-function displayPortDetails() {
+function displayMyPortDetails() {
   var portfolioHTML = "";
   $('.data').html(portfolioHTML);
   for (var i = 0; i < userAccount.length; i++) {
@@ -29,16 +29,16 @@ function displayPortDetails() {
 }
 
 // Display Investment Details in Individual Portfolios
-function displayPortDetails(Arr, port) {
+function displayInvPortDetails(arr, classname) {
   var portfolioHTML = "";
-  $('.data').html(portfolioHTML);
-  for (var i = 0; i < userAccount.length; i++) {
-    var invbalance = userAccount[i].balance.toFixed(2);
-    var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${userAccount[i].ticker} container">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
-    <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
+  $(classname).html(portfolioHTML);
+  for (var i = 0; i < arr.length; i++) {
+    var invbalance = (arr[i].balance * 100).toFixed(0) + "%";
+    var progress = +(arr[i].balance * 100).toFixed(2) + "%"
+    portfolioHTML += `<div class="${arr[i].ticker}">${arr[i].category}<span class="pull-right">${invbalance}</span>
+    <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${arr[i].color};"></div></div></div> `
   }
-  $('.data').html(portfolioHTML);
+  $(classname).html(portfolioHTML);
 }
 
 // Chart data generation functions
@@ -106,7 +106,12 @@ $().ready(function(){
   $('.acctbalance').text("$" + userBalance);
 
   // Calls Investment Details function
-  displayPortDetails();
+  displayMyPortDetails();
+
+  //Calls Individual Portfolio function
+  displayInvPortDetails(conPort, '.con-data')
+  displayInvPortDetails(modPort, '.mod-data')
+  displayInvPortDetails(aggPort, '.agg-data')
 
   //Generate portfolio chart
   var options = {
@@ -188,7 +193,7 @@ $().ready(function(){
     }
     myPieChart.data = genData(userAccount);
     myPieChart.update();
-    displayPortDetails();
+    displayMyPortDetails();
   })
 
   $('#modSelect').on('click',function(){
@@ -199,7 +204,7 @@ $().ready(function(){
     }
     myPieChart.data = genData(userAccount);
     myPieChart.update();
-    displayPortDetails();
+    displayMyPortDetails();
   })
   $('#aggSelect').on('click',function(){
     userAccount = []
@@ -209,7 +214,7 @@ $().ready(function(){
     }
     myPieChart.data = genData(userAccount);
     myPieChart.update();
-    displayPortDetails();
+    displayMyPortDetails();
   })
 
 })  //Ends $().ready function
