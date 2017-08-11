@@ -22,7 +22,20 @@ function displayPortDetails() {
   for (var i = 0; i < userAccount.length; i++) {
     var invbalance = userAccount[i].balance.toFixed(2);
     var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${userAccount[i].ticker} container">${userAccount[i].category} ${userAccount[i].fundname}   $${invbalance}
+    portfolioHTML += `<div class="${userAccount[i].ticker} container">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
+    <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
+  }
+  $('.data').html(portfolioHTML);
+}
+
+// Display Investment Details in Individual Portfolios
+function displayPortDetails(Arr, port) {
+  var portfolioHTML = "";
+  $('.data').html(portfolioHTML);
+  for (var i = 0; i < userAccount.length; i++) {
+    var invbalance = userAccount[i].balance.toFixed(2);
+    var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
+    portfolioHTML += `<div class="${userAccount[i].ticker} container">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
   }
   $('.data').html(portfolioHTML);
@@ -110,7 +123,11 @@ $().ready(function(){
       legend: {
         display: false,
         position: 'bottom'
-      }
+      },
+
+      animation: {
+        duration: 2000,
+      },
     }
 
   var portChart = $("#portChart");
@@ -122,29 +139,45 @@ $().ready(function(){
   })
 
   //generate the 3 static portfolio charts:
-  var conChart = $("#conChart");
+    var conChart = $("#conChart");
 
-  myConChart = new Chart(conChart,{
-    type: 'doughnut',
-    data: genData(conPort),
-    options: options
+    myConChart = new Chart(conChart,{
+      type: 'doughnut',
+      data: [25,25,25,25],
+      options: options
+    })
+
+    var modChart = $("#modChart");
+
+    myModChart = new Chart(modChart,{
+      type: 'doughnut',
+      data: [25,25,25,25],
+      options: options
+    })
+
+    var aggChart = $("#aggChart");
+
+    myAggChart = new Chart(aggChart,{
+      type: 'doughnut',
+      data: [25,25,25,25],
+      options: options
+    })
+
+  $('.btn-conport').on('click', function(){
+    myConChart.data = genData(conPort);
+    myConChart.update();
   })
 
-  var modChart = $("#modChart");
-
-  myModChart = new Chart(modChart,{
-    type: 'doughnut',
-    data: genData(modPort),
-    options: options
+  $('.btn-modport').on('click', function(){
+    myModChart.data = genData(modPort);
+    myModChart.update();
   })
 
-  var aggChart = $("#aggChart");
-
-  myAggChart = new Chart(aggChart,{
-    type: 'doughnut',
-    data: genData(aggPort),
-    options: options
+  $('.btn-aggport').on('click', function(){
+    myAggChart.data = genData(aggPort);
+    myAggChart.update();
   })
+
 
   //button to transfer to a different portfolio
   $('#conSelect').on('click',function(){
