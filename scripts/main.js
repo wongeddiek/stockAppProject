@@ -20,9 +20,11 @@ function displayMyPortDetails() {
   var portfolioHTML = "";
   $('.data').html(portfolioHTML);
   for (var i = 0; i < userAccount.length; i++) {
+    var category = userAccount[i].category;
+    category = category.replace(/\s+/g, '');
     var invbalance = userAccount[i].balance.toFixed(2);
     var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${userAccount[i].ticker} container" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
+    portfolioHTML += `<div class="${userAccount[i].ticker} ${category} container" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
   }
   $('.data').html(portfolioHTML);
@@ -33,9 +35,11 @@ function displayInvPortDetails(arr, classname) {
   var portfolioHTML = "";
   $(classname).html(portfolioHTML);
   for (var i = 0; i < arr.length; i++) {
+    var category = userAccount[i].category;
+    category = category.replace(/\s+/g, '');
     var invbalance = (arr[i].balance * 100).toFixed(0) + "%";
     var progress = +(arr[i].balance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${arr[i].ticker}">${arr[i].category}<span class="pull-right">${invbalance}</span>
+    portfolioHTML += `<div class="${arr[i].ticker} ${category}">${arr[i].category}<span class="pull-right">${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${arr[i].color};"></div></div></div> `
   }
   $(classname).html(portfolioHTML);
@@ -179,8 +183,31 @@ $().ready(function(){
         }
       },
 
+      hover: {
+        onHover: function() {
+          // return chartData.labels[tooltipItem.index] + " " + " $" + (chartData.datasets[0].data[tooltipItem.index]).toFixed(2);
+          if (this.active[0]) {
+
+              $(`.${userAccount[this.active[0]._index].ticker}`).css("transform", "scale(1.05,1.05)")
+              $(`.${userAccount[this.active[0]._index].ticker}`).css("transition", "1s")
+              console.log(this.active[0])
+              // console.log(this)
+            // }.bind(this))
+          } else {
+            $('.chart').hover(function(){
+              for (var i = 0; i < userAccount.length; i++) {
+                $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
+                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+
+              }
+            })
+          }
+
+        }
+      },
+
       animation: {
-        duration: 2000,
+        duration: 1500,
       },
     }
 
