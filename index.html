@@ -76,6 +76,31 @@
       </div> -->
       <div class="container data">
       </div>
+
+      <!-- Investment detail modal -->
+      <div class="container container-modal">
+
+      </div>
+      <div class="modal fade" id="modal-inv">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5>Investment Information</h5>
+              </div>
+              <div class="modal-body">
+                <h5 id="modal-fundname"></h5>
+                <p>Fund Ticker <span id="modal-ticker" class="pull-right"></span></p>
+                <p>Fund Category <span id="modal-category" class="pull-right"></span></p>
+                <p>Current Price <span id="modal-nav" class="pull-right"></span></p>
+                <p>Shares Owned <span id="modal-share" class="pull-right"></span></p>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+              </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <!-- End left container -->
 
@@ -86,7 +111,7 @@
 
       <!-- Conservative Portfolio Modal -->
       <div class="modal fade" id="modal-con">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
           <div class="modal-content">
               <!-- <div class="modal-header">
                 <h5>Conservative Portfolio</h5>
@@ -114,7 +139,7 @@
 
       <!-- Moderate Portfolio Modal -->
       <div class="modal fade" id="modal-mod">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
           <div class="modal-content">
               <!-- <div class="modal-header">
                 <h5>Moderate Portfolio</h5>
@@ -142,7 +167,7 @@
 
       <!-- Agressive Portfolio Modal -->
       <div class="modal fade" id="modal-agg">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
           <div class="modal-content">
               <!-- <div class="modal-header">
                 <h5>Agressive Portfolio</h5>

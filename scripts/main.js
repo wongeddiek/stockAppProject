@@ -22,7 +22,7 @@ function displayMyPortDetails() {
   for (var i = 0; i < userAccount.length; i++) {
     var invbalance = userAccount[i].balance.toFixed(2);
     var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${userAccount[i].ticker} container">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
+    portfolioHTML += `<div class="${userAccount[i].ticker} container" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
   }
   $('.data').html(portfolioHTML);
@@ -39,6 +39,42 @@ function displayInvPortDetails(arr, classname) {
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${arr[i].color};"></div></div></div> `
   }
   $(classname).html(portfolioHTML);
+}
+
+// populate investment modal function
+function invModalInfo(fund) {
+  for (var i = 0; i < userAccount.length; i++) {
+    if (userAccount[i].ticker === fund) {
+      $('#modal-fundname').html(userAccount[i].fundname);
+      $('#modal-ticker').html(userAccount[i].ticker);
+      $('#modal-category').html(userAccount[i].category);
+      $('#modal-nav').html(userAccount[i].price);
+      $('#modal-share').html(userAccount[i].share);
+    }
+  }
+}
+
+// add click listener to popuate modal function
+function addInvInfoListeners() {
+  $('.data .VBMFX').on('click', function(){
+    invModalInfo('VBMFX')
+  })
+
+  $('.data .VTSMX').on('click', function(){
+    invModalInfo('VTSMX')
+  })
+
+  $('.data .VIMSX').on('click', function(){
+    invModalInfo('VIMSX')
+  })
+
+  $('.data .NAESX').on('click', function(){
+    invModalInfo('NAESX')
+  })
+
+  $('.data .VGSTX').on('click', function(){
+    invModalInfo('VGSTX')
+  })
 }
 
 // Chart data generation functions
@@ -105,13 +141,12 @@ $().ready(function(){
   // Display current account balance
   $('.acctbalance').text("$" + userBalance);
 
-  // Calls Investment Details function
+  // Call Investment Details function
   displayMyPortDetails();
 
-  //Calls Individual Portfolio function
-  displayInvPortDetails(conPort, '.con-data')
-  displayInvPortDetails(modPort, '.mod-data')
-  displayInvPortDetails(aggPort, '.agg-data')
+  // populates investment modal information:
+  addInvInfoListeners();
+
 
   //Generate portfolio chart
   var options = {
@@ -143,6 +178,11 @@ $().ready(function(){
     options: options
   })
 
+  //Calls Individual Portfolio functions
+  displayInvPortDetails(conPort, '.con-data')
+  displayInvPortDetails(modPort, '.mod-data')
+  displayInvPortDetails(aggPort, '.agg-data')
+
   //generate the 3 static portfolio charts:
     var conChart = $("#conChart");
 
@@ -168,6 +208,7 @@ $().ready(function(){
       options: options
     })
 
+  // Refresh the individual portfolios on click
   $('.btn-conport').on('click', function(){
     myConChart.data = genData(conPort);
     myConChart.update();
@@ -188,33 +229,36 @@ $().ready(function(){
   $('#conSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < conPort.length; i++) {
-      var userAcctData = new Account(user.id, conPort[i].ticker, conPort[i].fundname, conPort[i].category, conPort[i].price, +(conPort[i].balance * userBalance / conPort[i].price).toFixed(3), +(conPort[i].balance * userBalance).toFixed(2), conPort[i].color)
+      var userAcctData = new Account(user.id, conPort[i].ticker, conPort[i].fundname, conPort[i].category, +(conPort[i].balance * userBalance / conPort[i].price).toFixed(3), conPort[i].price, +(conPort[i].balance * userBalance).toFixed(2), conPort[i].color)
       userAccount.push(userAcctData)
     }
     myPieChart.data = genData(userAccount);
     myPieChart.update();
     displayMyPortDetails();
+    addInvInfoListeners();
   })
 
   $('#modSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < modPort.length; i++) {
-      var userAcctData = new Account(user.id, modPort[i].ticker, modPort[i].fundname, modPort[i].category, modPort[i].price, +(modPort[i].balance * userBalance / modPort[i].price).toFixed(3), +(modPort[i].balance * userBalance).toFixed(2), modPort[i].color)
+      var userAcctData = new Account(user.id, modPort[i].ticker, modPort[i].fundname, modPort[i].category, +(modPort[i].balance * userBalance / modPort[i].price).toFixed(3), modPort[i].price, +(modPort[i].balance * userBalance).toFixed(2), modPort[i].color)
       userAccount.push(userAcctData)
     }
     myPieChart.data = genData(userAccount);
     myPieChart.update();
     displayMyPortDetails();
+    addInvInfoListeners();
   })
   $('#aggSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < aggPort.length; i++) {
-      var userAcctData = new Account(user.id, aggPort[i].ticker, aggPort[i].fundname, aggPort[i].category, aggPort[i].price, +(aggPort[i].balance * userBalance / aggPort[i].price).toFixed(3), +(aggPort[i].balance * userBalance).toFixed(2), aggPort[i].color)
+      var userAcctData = new Account(user.id, aggPort[i].ticker, aggPort[i].fundname, aggPort[i].category, +(aggPort[i].balance * userBalance / aggPort[i].price).toFixed(3), aggPort[i].price, +(aggPort[i].balance * userBalance).toFixed(2), aggPort[i].color)
       userAccount.push(userAcctData)
     }
     myPieChart.data = genData(userAccount);
     myPieChart.update();
     displayMyPortDetails();
+    addInvInfoListeners();
   })
 
 })  //Ends $().ready function

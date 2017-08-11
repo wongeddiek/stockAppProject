@@ -24,3 +24,11 @@
   max-width: 500px;
   margin: 0 auto;
 }
+
+.data:hover {
+  cursor: pointer;
+}
+
+#modal-fundname {
+  margin-bottom: 20px;
+}
