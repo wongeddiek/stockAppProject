@@ -5,9 +5,17 @@
 .chart {
   max-width: 500px;
   max-height: 500px;
+  margin-bottom: 10px;
 }
 
 .side {
   max-width: 500px;
   max-height: 500px;
+}
+
+.progress, .progress-bar {
+  background-image: none;
+  max-height: 10px;
+  border-radius: 5px;
+  box-shadow: none;
 }

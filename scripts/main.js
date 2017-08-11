@@ -22,8 +22,8 @@ function displayPortDetails() {
   for (var i = 0; i < userAccount.length; i++) {
     var invbalance = userAccount[i].balance.toFixed(2);
     var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
-    portfolioHTML += `<p class="${userAccount[i].ticker} container" style="background-color: ${userAccount[i].color}; color: white;">${userAccount[i].category} ${userAccount[i].fundname}   $${invbalance}</p>
-    <div class="progress"><div class="progress-bar" style="width: ${progress}; style="background-color: ${userAccount[i].color};></div></div> `
+    portfolioHTML += `<div class="${userAccount[i].ticker} container">${userAccount[i].category} ${userAccount[i].fundname}   $${invbalance}
+    <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
   }
   $('.data').html(portfolioHTML);
 }
@@ -108,6 +108,7 @@ $().ready(function(){
       cutoutPercentage: 30,
 
       legend: {
+        display: false,
         position: 'bottom'
       }
     }
@@ -149,7 +150,7 @@ $().ready(function(){
   $('#conSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < conPort.length; i++) {
-      var userAcctData = new Account(user.id, conPort[i].ticker, conPort[i].fundname, conPort[i].category, conPort[i].price, +(conPort[i].balance * userBalance / conPort[i].price).toFixed(3), +(conPort[i].balance * userBalance).toFixed(2))
+      var userAcctData = new Account(user.id, conPort[i].ticker, conPort[i].fundname, conPort[i].category, conPort[i].price, +(conPort[i].balance * userBalance / conPort[i].price).toFixed(3), +(conPort[i].balance * userBalance).toFixed(2), conPort[i].color)
       userAccount.push(userAcctData)
     }
     myPieChart.data = genData(userAccount);
@@ -160,7 +161,7 @@ $().ready(function(){
   $('#modSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < modPort.length; i++) {
-      var userAcctData = new Account(user.id, modPort[i].ticker, modPort[i].fundname, modPort[i].category, modPort[i].price, +(modPort[i].balance * userBalance / modPort[i].price).toFixed(3), +(modPort[i].balance * userBalance).toFixed(2))
+      var userAcctData = new Account(user.id, modPort[i].ticker, modPort[i].fundname, modPort[i].category, modPort[i].price, +(modPort[i].balance * userBalance / modPort[i].price).toFixed(3), +(modPort[i].balance * userBalance).toFixed(2), modPort[i].color)
       userAccount.push(userAcctData)
     }
     myPieChart.data = genData(userAccount);
@@ -170,7 +171,7 @@ $().ready(function(){
   $('#aggSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < aggPort.length; i++) {
-      var userAcctData = new Account(user.id, aggPort[i].ticker, aggPort[i].fundname, aggPort[i].category, aggPort[i].price, +(aggPort[i].balance * userBalance / aggPort[i].price).toFixed(3), +(aggPort[i].balance * userBalance).toFixed(2))
+      var userAcctData = new Account(user.id, aggPort[i].ticker, aggPort[i].fundname, aggPort[i].category, aggPort[i].price, +(aggPort[i].balance * userBalance / aggPort[i].price).toFixed(3), +(aggPort[i].balance * userBalance).toFixed(2), aggPort[i].color)
       userAccount.push(userAcctData)
     }
     myPieChart.data = genData(userAccount);
