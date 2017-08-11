@@ -21,7 +21,9 @@ function displayPortDetails() {
   $('.data').html(portfolioHTML);
   for (var i = 0; i < userAccount.length; i++) {
     var invbalance = userAccount[i].balance.toFixed(2);
-    portfolioHTML += `<p class="${userAccount[i].ticker}">${userAccount[i].category} ${userAccount[i].fundname}   $${invbalance}</p>`
+    var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
+    portfolioHTML += `<p class="${userAccount[i].ticker} container" style="background-color: ${userAccount[i].color}; color: white;">${userAccount[i].category} ${userAccount[i].fundname}   $${invbalance}</p>
+    <div class="progress"><div class="progress-bar" style="width: ${progress}; style="background-color: ${userAccount[i].color};></div></div> `
   }
   $('.data').html(portfolioHTML);
 }
