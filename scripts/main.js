@@ -183,28 +183,28 @@ $().ready(function(){
         }
       },
 
+      //hover over chart section and link to the individual investments
       hover: {
-        onHover: function() {
-          // return chartData.labels[tooltipItem.index] + " " + " $" + (chartData.datasets[0].data[tooltipItem.index]).toFixed(2);
-          if (this.active[0]) {
-
-              $(`.${userAccount[this.active[0]._index].ticker}`).css("transform", "scale(1.05,1.05)")
-              $(`.${userAccount[this.active[0]._index].ticker}`).css("transition", "1s")
-              console.log(this.active[0])
-              // console.log(this)
-            // }.bind(this))
-          } else {
-            $('.chart').hover(function(){
+        onHover: function(x,y) {
+          if (y[0]) {
+            for (var i = 0; i < userAccount.length; i++) {
+              if (y[0]._index === i) {
+                $(`.${userAccount[i].ticker}`).css("transform", "scale(1.05,1.05)")
+                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+              } else {
+                $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
+                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+              }
+            }
+          }
+          else {
               for (var i = 0; i < userAccount.length; i++) {
                 $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
                 $(`.${userAccount[i].ticker}`).css("transition", "1s")
-
               }
-            })
           }
-
-        }
       },
+    },
 
       animation: {
         duration: 1500,
@@ -239,6 +239,28 @@ $().ready(function(){
               return chartData.labels[tooltipItem.index] + " " + " " + ((chartData.datasets[0].data[tooltipItem.index]) * 100) + "%";
             }
           }
+        },
+
+        hover: {
+          onHover: function(x,y) {
+            if (y[0]) {
+              for (var i = 0; i < userAccount.length; i++) {
+                if (y[0]._index === i) {
+                  $(`.${userAccount[i].ticker}`).css("transform", "scale(1.05,1.05)")
+                  $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                } else {
+                  $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
+                  $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                }
+              }
+            }
+            else {
+                for (var i = 0; i < userAccount.length; i++) {
+                  $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
+                  $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                }
+            }
+          },
         },
 
         animation: {
