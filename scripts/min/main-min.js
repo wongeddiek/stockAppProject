@@ -171,14 +171,15 @@ $().ready(function(){
       },
 
       tooltips: {
-        bodyFontSize: 16,
+        bodyFontSize: 14,
         caretSize: 0,
         xPadding: 10,
         yPadding: 10,
 
         callbacks: {
           label: function(tooltipItem, chartData) {
-            return chartData.labels[tooltipItem.index] + " " + " $" + (chartData.datasets[0].data[tooltipItem.index]).toFixed(2);
+            return chartData.labels[tooltipItem.index]
+            // + " " + " $" + (chartData.datasets[0].data[tooltipItem.index]).toFixed(2);
           }
         }
       },
@@ -189,7 +190,7 @@ $().ready(function(){
           if (y[0]) {
             for (var i = 0; i < userAccount.length; i++) {
               if (y[0]._index === i) {
-                $(`.${userAccount[i].ticker}`).css("transform", "scale(1.05,1.05)")
+                $(`.${userAccount[i].ticker}`).css("transform", "scale(1.1,1.1)")
                 $(`.${userAccount[i].ticker}`).css("transition", "1s")
               } else {
                 $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
@@ -229,7 +230,7 @@ $().ready(function(){
         },
 
         tooltips: {
-          bodyFontSize: 16,
+          bodyFontSize: 14,
           caretSize: 0,
           xPadding: 10,
           yPadding: 10,
