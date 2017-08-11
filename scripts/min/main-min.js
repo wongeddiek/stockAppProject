@@ -20,9 +20,11 @@ function displayMyPortDetails() {
   var portfolioHTML = "";
   $('.data').html(portfolioHTML);
   for (var i = 0; i < userAccount.length; i++) {
+    var category = userAccount[i].category;
+    category = category.replace(/\s+/g, '');
     var invbalance = userAccount[i].balance.toFixed(2);
     var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${userAccount[i].ticker} container" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
+    portfolioHTML += `<div class="${userAccount[i].ticker} ${category} container" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
   }
   $('.data').html(portfolioHTML);
@@ -33,9 +35,11 @@ function displayInvPortDetails(arr, classname) {
   var portfolioHTML = "";
   $(classname).html(portfolioHTML);
   for (var i = 0; i < arr.length; i++) {
+    var category = userAccount[i].category;
+    category = category.replace(/\s+/g, '');
     var invbalance = (arr[i].balance * 100).toFixed(0) + "%";
     var progress = +(arr[i].balance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${arr[i].ticker}">${arr[i].category}<span class="pull-right">${invbalance}</span>
+    portfolioHTML += `<div class="${arr[i].ticker} ${category}">${arr[i].category}<span class="pull-right">${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${arr[i].color};"></div></div></div> `
   }
   $(classname).html(portfolioHTML);
@@ -45,7 +49,8 @@ function displayInvPortDetails(arr, classname) {
 function invModalInfo(fund) {
   for (var i = 0; i < userAccount.length; i++) {
     if (userAccount[i].ticker === fund) {
-      $('#modal-fundname').html(userAccount[i].fundname);
+      var url = `https://www.morningstar.com/funds/xnas/${userAccount[i].ticker}/quote.html`
+      $('#modal-fundname').html(`<a href=${url} target="_blank">` + userAccount[i].fundname +`</a>`);
       $('#modal-ticker').html(userAccount[i].ticker);
       $('#modal-category').html(userAccount[i].category);
       $('#modal-nav').html(userAccount[i].price);
@@ -178,8 +183,31 @@ $().ready(function(){
         }
       },
 
+      //hover over chart section and link to the individual investments
+      hover: {
+        onHover: function(x,y) {
+          if (y[0]) {
+            for (var i = 0; i < userAccount.length; i++) {
+              if (y[0]._index === i) {
+                $(`.${userAccount[i].ticker}`).css("transform", "scale(1.05,1.05)")
+                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+              } else {
+                $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
+                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+              }
+            }
+          }
+          else {
+              for (var i = 0; i < userAccount.length; i++) {
+                $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
+                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+              }
+          }
+      },
+    },
+
       animation: {
-        duration: 2000,
+        duration: 1500,
       },
     }
 
@@ -211,6 +239,28 @@ $().ready(function(){
               return chartData.labels[tooltipItem.index] + " " + " " + ((chartData.datasets[0].data[tooltipItem.index]) * 100) + "%";
             }
           }
+        },
+
+        hover: {
+          onHover: function(x,y) {
+            if (y[0]) {
+              for (var i = 0; i < userAccount.length; i++) {
+                if (y[0]._index === i) {
+                  $(`.${userAccount[i].ticker}`).css("transform", "scale(1.05,1.05)")
+                  $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                } else {
+                  $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
+                  $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                }
+              }
+            }
+            else {
+                for (var i = 0; i < userAccount.length; i++) {
+                  $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
+                  $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                }
+            }
+          },
         },
 
         animation: {
@@ -298,6 +348,7 @@ $().ready(function(){
     displayMyPortDetails();
     addInvInfoListeners();
   })
+
   $('#aggSelect').on('click',function(){
     userAccount = []
     for (var i = 0; i < aggPort.length; i++) {
