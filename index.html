@@ -35,6 +35,8 @@
     <script src="scripts/min/main-min.js" charset="utf-8"></script>
   </head>
   <body>
+
+    <!-- Nav bar -->
     <div class="navbar navbar-default nav-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -55,46 +57,108 @@
         </div>
       </div>
     </div>
+    <!-- End Nav bar -->
+
+    <!-- Right container -->
     <div class="container col-sm-7">
       <div class="container">
         <h4>Welcome <span class="username"></span></h4>
         <h4>Account Balance as of <span class="today"></span></h4>
         <h3 class="acctbalance"></h3>
       </div>
+      <!-- User portfolio chart -->
       <div class="container chart">
         <canvas id="portChart"></canvas>
       </div>
+      <!-- User portfolio details -->
       <div class="container">
         <p>Portfolio Details</p>
       </div>
       <div class="container data">
       </div>
     </div>
+    <!-- End left container -->
+
+    <!-- Right Container -->
     <div class="container col-sm-5">
+      <!-- button for Conservative Portfolio Modal -->
+      <button class="btn btn-primary" data-toggle="modal" data-target="#modal-con">Conservative Portfolio</button>
 
-      <p>Conservative Portfolio</p>
-      <div class="container chart side">
-        <canvas id="conChart"></canvas>
+      <!-- Conservative Portfolio Modal -->
+      <div class="modal fade" id="modal-con">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5>Conservative Portfolio</h5>
+              </div>
+              <div class="modal-body">
+                <p>Conservative Portfolio</p>
+                <div class="container chart side">
+                  <canvas id="conChart"></canvas>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <button class="btn btn-primary" id="conSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
+              </div>
+          </div>
+        </div>
       </div>
-      <button class="btn btn-primary" id="conSelect" type="button" name="button">Select This Portfolio and Transfer My Balance</button>
 
       <p></p>
 
-      <p>Moderate Portfolio</p>
-      <div class="container chart side">
-        <canvas id="modChart"></canvas>
+      <!-- button for Moderate Portfolio Modal -->
+      <button class="btn btn-primary" data-toggle="modal" data-target="#modal-mod">Moderate Portfolio</button>
+
+      <!-- Moderate Portfolio Modal -->
+      <div class="modal fade" id="modal-mod">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5>Moderate Portfolio</h5>
+              </div>
+              <div class="modal-body">
+                <p>Moderate Portfolio</p>
+                <div class="container chart side">
+                  <canvas id="modChart"></canvas>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <button class="btn btn-primary" id="modSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
+              </div>
+          </div>
+        </div>
       </div>
-      <button class="btn btn-primary" id="modSelect" type="button" name="button">Select This Portfolio and Transfer My Balance</button>
 
       <p></p>
 
-      <p>Aggressive Portfolio</p>
-      <div class="container chart side">
-        <canvas id="aggChart"></canvas>
+      <!-- button for Agressive Portfolio Modal -->
+      <button class="btn btn-primary" data-toggle="modal" data-target="#modal-agg">Agressive Portfolio</button>
+
+      <!-- Agressive Portfolio Modal -->
+      <div class="modal fade" id="modal-agg">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5>Agressive Portfolio</h5>
+              </div>
+              <div class="modal-body">
+                <p>Agressive Portfolio</p>
+                <div class="container chart side">
+                  <canvas id="aggChart"></canvas>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <button class="btn btn-primary" id="aggSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
+              </div>
+          </div>
+        </div>
       </div>
-      <button class="btn btn-primary" id="aggSelect" type="button" name="button">Select This Portfolio and Transfer My Balance</button>
 
     </div>
+    <!-- End right container -->
 
 
   </body>
