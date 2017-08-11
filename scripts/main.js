@@ -84,6 +84,7 @@ var myAggChart = {};
 
 // run the below when the page loads
 $().ready(function(){
+  $('.username').text(user.first);
   // Displays formatted date
   $('.today').text(fullDate);
   // Display current account balance
