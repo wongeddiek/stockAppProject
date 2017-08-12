@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stock App</title>
+
+    <!-- JQuery Link -->
+    <script
+    src="http://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Charts.js links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js" charset="utf-8"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" charset="utf-8"></script>
+
+    <!-- Font Awesome link -->
+    <script src="https://use.fontawesome.com/ea7467f4db.js"></script>
+
+    <script src="scripts/min/globalfunctions-min.js" charset="utf-8"></script>
+    <script src="scripts/min/port-min.js" charset="utf-8"></script>
+    <!-- <script src="scripts/min/sampledata-min.js" charset="utf-8"></script>
+    <script src="scripts/min/main-min.js" charset="utf-8"></script> -->
+
+    <!-- Bootstrap Links -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- CSS link -->
+    <link rel="stylesheet" href="css/min/main-min.css">
+  </head>
+  <body>
+    <!-- Nav bar -->
+    <div class="navbar navbar-default nav-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="active"><a href="#">Portfolio</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- End Nav bar -->
+
+    <!-- Right Container -->
+    <div class="container col-sm-8">
+      <!-- button for Conservative Portfolio Modal -->
+      <button class="btn btn-primary btn-conport" data-toggle="modal" data-target="#modal-con">Conservative Portfolio</button>
+
+      <!-- Conservative Portfolio Modal -->
+      <div class="modal fade" id="modal-con">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <!-- <div class="modal-header">
+                <h5>Conservative Portfolio</h5>
+              </div> -->
+              <div class="modal-body">
+                <p>Conservative Portfolio</p>
+                <div class="container chart">
+                  <canvas id="conChart"></canvas>
+                </div>
+                <div class="con-data">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <button class="btn btn-primary" id="conSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <p></p>
+
+      <!-- button for Moderate Portfolio Modal -->
+      <button class="btn btn-primary btn-modport" data-toggle="modal" data-target="#modal-mod">Moderate Portfolio</button>
+
+      <!-- Moderate Portfolio Modal -->
+      <div class="modal fade" id="modal-mod">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <!-- <div class="modal-header">
+                <h5>Moderate Portfolio</h5>
+              </div> -->
+              <div class="modal-body">
+                <p>Moderate Portfolio</p>
+                <div class="container chart">
+                  <canvas id="modChart"></canvas>
+                </div>
+                <div class="mod-data">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <button class="btn btn-primary" id="modSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <p></p>
+
+      <!-- button for Agressive Portfolio Modal -->
+      <button class="btn btn-primary btn-aggport" data-toggle="modal" data-target="#modal-agg">Agressive Portfolio</button>
+
+      <!-- Agressive Portfolio Modal -->
+      <div class="modal fade" id="modal-agg">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <!-- <div class="modal-header">
+                <h5>Agressive Portfolio</h5>
+              </div> -->
+              <div class="modal-body">
+                <p>Agressive Portfolio</p>
+                <div class="container chart">
+                  <canvas id="aggChart"></canvas>
+                </div>
+                <div class="agg-data">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <button class="btn btn-primary" id="aggSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- End right container -->
+  </body>
+</html>
