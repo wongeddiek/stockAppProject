@@ -36,7 +36,7 @@ function displayInvPortDetails(arr, classname) {
   for (var i = 0; i < arr.length; i++) {
     var invbalance = (arr[i].balance * 100).toFixed(0) + "%";
     var progress = +(arr[i].balance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${arr[i].ticker}">${arr[i].category}<span class="pull-right">${invbalance}</span>
+    portfolioHTML += `<div class="${arr[i].ticker} ind-port-container">${arr[i].category}<span class="pull-right">${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${arr[i].color};"></div></div></div> `
   }
   $(classname).html(portfolioHTML);
@@ -85,18 +85,19 @@ $().ready(function(){
         if (y[0]) {
           for (var i = 0; i < conPort.length; i++) {
             if (y[0]._index === i) {
-              $(`.${conPort[i].ticker}`).css("transform", "scale(1.05,1.05)")
-              $(`.${conPort[i].ticker}`).css("transition", "0.5s")
+              $(`.${conPort[i].ticker}`).css("transform", "scale(1.05,1.05)").css("transition", "0.5s");
             } else {
-              $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
-              $(`.${conPort[i].ticker}`).css("transition", "0.5s")
+              // $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)");
+              // $(`.${conPort[i].ticker}`).css("transition", "0.5s");
+              $(`.${conPort[i].ticker}`).removeAttr('style');
             }
           }
         }
         else {
           for (var i = 0; i < conPort.length; i++) {
-            $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
-            $(`.${conPort[i].ticker}`).css("transition", "0.5s")
+            // $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)");
+            // $(`.${conPort[i].ticker}`).css("transition", "0.5s");
+            $(`.${conPort[i].ticker}`).removeAttr('style');
           }
         }
       },

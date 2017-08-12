@@ -41,3 +41,13 @@
 .modal-header {
   padding: 5px 15px;
 }
+
+.inv-container:hover {
+  transform: scale(1.05, 1.05);
+  transition: 0.5s;
+}
+
+.inv-container, .ind-port-container {
+  transform: scale(1, 1);
+  transition: 0.5s;
+}
