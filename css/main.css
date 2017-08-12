@@ -25,7 +25,7 @@
   box-shadow: none;
 }
 
-.con-data, .mod-data, .agg-data {
+.data, .con-data, .mod-data, .agg-data {
   max-width: 500px;
   margin: 0 auto;
 }

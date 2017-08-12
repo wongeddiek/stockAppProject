@@ -11,7 +11,7 @@ function displayMyPortDetails() {
   for (var i = 0; i < userAccount.length; i++) {
     var invbalance = userAccount[i].balance.toFixed(2);
     var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${userAccount[i].ticker} container" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
+    portfolioHTML += `<div class="${userAccount[i].ticker}" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
   }
   $('.data').html(portfolioHTML);
@@ -27,6 +27,7 @@ function invModalInfo(fund) {
       $('#modal-category').html(userAccount[i].category);
       $('#modal-nav').html(userAccount[i].price);
       $('#modal-share').html(userAccount[i].share);
+      $('#modal-info').html(`<a href=${url} target="_blank">${url}</a>`);
     }
   }
 }
@@ -54,6 +55,7 @@ function addInvInfoListeners() {
   })
 }
 
+// initialize pie chart object
 var myPieChart = {};
 
 // run the below when the page loads
@@ -69,7 +71,6 @@ $().ready(function(){
 
   // populates investment modal information:
   addInvInfoListeners();
-
 
   //generate chart options for my portfolio chart
   var options = {
@@ -108,18 +109,18 @@ $().ready(function(){
           if (y[0]) {
             for (var i = 0; i < userAccount.length; i++) {
               if (y[0]._index === i) {
-                $(`.${userAccount[i].ticker}`).css("transform", "scale(1.1,1.1)")
-                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                $(`.${userAccount[i].ticker}`).css("transform", "scale(1.05,1.05)")
+                $(`.${userAccount[i].ticker}`).css("transition", "0.5s")
               } else {
                 $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
-                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                $(`.${userAccount[i].ticker}`).css("transition", "0.5s")
               }
             }
           }
           else {
               for (var i = 0; i < userAccount.length; i++) {
                 $(`.${userAccount[i].ticker}`).css("transform", "scale(1,1)")
-                $(`.${userAccount[i].ticker}`).css("transition", "1s")
+                $(`.${userAccount[i].ticker}`).css("transition", "0.5s")
               }
           }
       },
@@ -139,8 +140,5 @@ $().ready(function(){
     data: genData(userAccount),
     options: options
   })
-
-
-
 
 })  //Ends $().ready function
