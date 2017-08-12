@@ -1,14 +1,3 @@
-// function to sum all investment balances
-function totalBalance(account) {
-  var total = 0;
-  for (var i = 0; i < account.length; i++) {
-    total += account[i].balance;
-  }
-  return total;
-}
-
-// creates sample user total account balance
-var userBalance = totalBalance(userAccount).toFixed(2);
 
 // creates and format current date in MMM dd yyyy format
 var date = new Date();

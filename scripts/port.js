@@ -151,13 +151,23 @@ $().ready(function(){
     myAggChart.update();
   })
 
+  //function to update user balance based on selected portfolio
+  function transferBal(alloc) {
+    var totalBal = sessionStorage.userBalance
+    var fundBal = []
+    for (var i = 0; i < alloc.length; i++) {
+      fundBal.push(+(alloc[i] * totalBal).toFixed(2))
+    }
+    return fundBal
+  }
+
   //buttons to transfer to a different portfolio
   $('#conSelect').on('click',function(){
     var portAlloc = [];
     for (var i = 0; i < conPort.length; i++) {
       portAlloc.push(conPort[i].balance)
     }
-    sessionStorage.portAlloc = portAlloc;
+    sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
     // userAccount = []
     // for (var i = 0; i < conPort.length; i++) {
@@ -175,7 +185,7 @@ $().ready(function(){
     for (var i = 0; i < modPort.length; i++) {
       portAlloc.push(modPort[i].balance)
     }
-    sessionStorage.portAlloc = portAlloc;
+    sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
     // sessionStorage.portAlloc = portAlloc
     // userAccount = []
@@ -195,7 +205,7 @@ $().ready(function(){
     for (var i = 0; i < aggPort.length; i++) {
       portAlloc.push(aggPort[i].balance)
     }
-    sessionStorage.portAlloc = portAlloc;
+    sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
 
     // userAccount = []
