@@ -39,22 +39,24 @@ var myPieChart = {};
 
 // run the below when the page loads
 $().ready(function(){
+  // display user name
   $('.username').text(user.first);
-  // Displays formatted date
+  // display formatted date
   $('.today').text(fullDate);
   // Display current account balance
   $('.acctbalance').text("$" + userBalance);
 
-  // Call Investment Details function
+  // call portfolio detail function to populate portfolio detail rows
   displayMyPortDetails();
 
-  // call click listener & populates investment modal information function
+  // call click listener & investment modal information function
   for (var i = 0; i < userAccount.length; i++) {
     addInvInfoListeners(userAccount[i].ticker);
   }
 
   //generate chart options for my portfolio chart
   var options = {
+      // padding for the chart canvas
       layout: {
         padding: {
           left: 0,
@@ -64,18 +66,22 @@ $().ready(function(){
         }
       },
 
+      //pie chart center cutout
       cutoutPercentage: 30,
 
+      //disable chart legend
       legend: {
         display: false,
       },
 
+      //hover tooltip styling
       tooltips: {
         bodyFontSize: 14,
         caretSize: 0,
         xPadding: 10,
         yPadding: 10,
 
+        //customize the tooltip label
         callbacks: {
           label: function(tooltipItem, chartData) {
             return chartData.labels[tooltipItem.index]
@@ -84,7 +90,7 @@ $().ready(function(){
         }
       },
 
-      //hover over chart section and link to the individual investments
+      //hover over chart section and animate the corresponding investment detail row
       hover: {
         onHover: function(x,y) {
           if (y[0]) {
@@ -107,6 +113,7 @@ $().ready(function(){
       },
     },
 
+      //chart initialize animation duration
       animation: {
         duration: 1500,
       },
@@ -115,7 +122,7 @@ $().ready(function(){
   // grabbing the html canvas element
   var portChart = $("#portChart");
 
-  //initialize the chart
+  //initialize the my portfolio chart
   myPieChart = new Chart(portChart,{
     type: 'doughnut',
     data: genData(userAccount),
