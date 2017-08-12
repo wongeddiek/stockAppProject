@@ -19,6 +19,7 @@ function Account(id, ticker, fundname, category, share, price, balance, color) {
   this.color = color;
 }
 
+//moved to port.js
 function Portfolio(ticker, fundname, category, price, balance, color) {
   this.ticker = ticker;
   this.fundname = fundname;
@@ -48,24 +49,27 @@ function userAccountData() {
 
 }
 
+
+
+// create user account data
 var userAccount = userAccountData();
 
-// Create pre-defined portfolio objects
-function genPortfolioData(bal1, bal2, bal3, bal4, bal5) {
-
-  var port1 = new Portfolio("VBMFX", "Vanguard Total Bond Market Index", "Bonds", 10.81, bal1, "rgba(9, 82, 86, 1)");
-
-  var port2 = new Portfolio ("VTSMX", "Vanguard Total Stock Market Index", "Large Co. Stocks", 61.63, bal2, "rgba(8, 127, 140, 1)")
-
-  var port3 = new Portfolio("VIMSX", "Vanguard Mid-Cap Index", "Mid Co. Stocks", 39.27, bal3, "rgba(90, 170, 149, 1)")
-
-  var port4 = new Portfolio("NAESX", "Vanguard Small-Cap Index", "Small Co. Stocks", 64.69, bal4, "rgba(134, 168, 115, 1)")
-
-  var port5 = new Portfolio("VGSTX", "Vanguard International Index", "International Stocks", 26.21, bal5, "rgba(187, 159, 6, 1)")
-
-  return [port1, port2, port3, port4, port5]
+// update current user shares from stored and update balance
+if (sessionStorage.userShares) {
+  for (var i = 0; i < userAccount.length; i++) {
+    userAccount[i].share = +(sessionStorage.userShares.split(",")[i])
+  }
 }
 
-var conPort = genPortfolioData(0.60, 0.15, 0.10, 0.10, 0.05)
-var modPort = genPortfolioData(0.40, 0.20, 0.15, 0.10, 0.15)
-var aggPort = genPortfolioData(0.15, 0.30, 0.20, 0.20, 0.25)
+
+//stores user share amounts
+function getUserShares() {
+  var shares = []
+  for (var i = 0; i < userAccount.length; i++) {
+    shares.push(userAccount[i].share)
+  }
+  return shares
+}
+
+//storing user shares
+sessionStorage.userShares = getUserShares()
