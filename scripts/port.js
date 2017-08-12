@@ -1,4 +1,3 @@
-
 //portfolio object constructor
 function Portfolio(ticker, fundname, category, price, balance, color) {
   this.ticker = ticker;
@@ -25,12 +24,12 @@ function genPortfolioData(bal1, bal2, bal3, bal4, bal5) {
   return [port1, port2, port3, port4, port5]
 }
 
-// creating the 3 portfolio objects
+// create the 3 portfolio objects
 var conPort = genPortfolioData(0.60, 0.15, 0.10, 0.10, 0.05)
 var modPort = genPortfolioData(0.40, 0.20, 0.15, 0.10, 0.15)
 var aggPort = genPortfolioData(0.15, 0.30, 0.15, 0.15, 0.25)
 
-// Display Investment Details in Individual Portfolios
+// function to display investment detail rows in individual Portfolios
 function displayInvPortDetails(arr, classname) {
   var portfolioHTML = "";
   $(classname).html(portfolioHTML);
@@ -43,66 +42,73 @@ function displayInvPortDetails(arr, classname) {
   $(classname).html(portfolioHTML);
 }
 
+//run when page loads
 $().ready(function(){
 
   //generate chart options for individual portfolio charts
   var optionsInd = {
-      layout: {
-        padding: {
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0
+    // padding for the chart canvas
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    },
+
+    //pie chart center cutout
+    cutoutPercentage: 30,
+
+    //disable chart legend
+    legend: {
+      display: false,
+    },
+
+    //hover tooltip styling
+    tooltips: {
+      bodyFontSize: 14,
+      caretSize: 0,
+      xPadding: 10,
+      yPadding: 10,
+
+      callbacks: {
+        label: function(tooltipItem, chartData) {
+          return chartData.labels[tooltipItem.index] + " " + " " + ((chartData.datasets[0].data[tooltipItem.index]) * 100) + "%";
         }
-      },
+      }
+    },
 
-      cutoutPercentage: 30,
-
-      legend: {
-        display: false,
-      },
-
-      tooltips: {
-        bodyFontSize: 14,
-        caretSize: 0,
-        xPadding: 10,
-        yPadding: 10,
-
-        callbacks: {
-          label: function(tooltipItem, chartData) {
-            return chartData.labels[tooltipItem.index] + " " + " " + ((chartData.datasets[0].data[tooltipItem.index]) * 100) + "%";
-          }
-        }
-      },
-
-      hover: {
-        onHover: function(x,y) {
-          if (y[0]) {
-            for (var i = 0; i < conPort.length; i++) {
-              if (y[0]._index === i) {
-                $(`.${conPort[i].ticker}`).css("transform", "scale(1.05,1.05)")
-                $(`.${conPort[i].ticker}`).css("transition", "0.5s")
-              } else {
-                $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
-                $(`.${conPort[i].ticker}`).css("transition", "0.5s")
-              }
+    //hover over chart section and animate the corresponding investment detail row
+    hover: {
+      onHover: function(x,y) {
+        if (y[0]) {
+          for (var i = 0; i < conPort.length; i++) {
+            if (y[0]._index === i) {
+              $(`.${conPort[i].ticker}`).css("transform", "scale(1.05,1.05)")
+              $(`.${conPort[i].ticker}`).css("transition", "0.5s")
+            } else {
+              $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
+              $(`.${conPort[i].ticker}`).css("transition", "0.5s")
             }
           }
-          else {
-              for (var i = 0; i < conPort.length; i++) {
-                $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
-                $(`.${conPort[i].ticker}`).css("transition", "0.5s")
-              }
+        }
+        else {
+          for (var i = 0; i < conPort.length; i++) {
+            $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
+            $(`.${conPort[i].ticker}`).css("transition", "0.5s")
           }
-        },
+        }
       },
+    },
 
-      animation: {
-        duration: 1500,
-      },
+    //chart initialize animation duration
+    animation: {
+      duration: 1500,
+    },
   }
-  //generate the 3 static portfolio charts:
 
+  //generate the 3 static portfolio charts:
   var myConChart = {};
   var myModChart = {};
   var myAggChart = {};
@@ -163,7 +169,7 @@ $().ready(function(){
     return fundBal
   }
 
-  //buttons to transfer to a different portfolio
+  //add click listener to buttons to transfer to a different portfolio
   $('#conSelect').on('click',function(){
     var portAlloc = [];
     for (var i = 0; i < conPort.length; i++) {
@@ -171,7 +177,6 @@ $().ready(function(){
     }
     sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
-
   })
 
   $('#modSelect').on('click',function(){
@@ -181,7 +186,6 @@ $().ready(function(){
     }
     sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
-
   })
 
   $('#aggSelect').on('click',function(){
@@ -192,6 +196,5 @@ $().ready(function(){
     }
     sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
-
   })
 }) //end $().ready
