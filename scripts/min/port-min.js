@@ -81,17 +81,17 @@ $().ready(function(){
             for (var i = 0; i < conPort.length; i++) {
               if (y[0]._index === i) {
                 $(`.${conPort[i].ticker}`).css("transform", "scale(1.05,1.05)")
-                $(`.${conPort[i].ticker}`).css("transition", "1s")
+                $(`.${conPort[i].ticker}`).css("transition", "0.5s")
               } else {
                 $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
-                $(`.${conPort[i].ticker}`).css("transition", "1s")
+                $(`.${conPort[i].ticker}`).css("transition", "0.5s")
               }
             }
           }
           else {
               for (var i = 0; i < conPort.length; i++) {
                 $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
-                $(`.${conPort[i].ticker}`).css("transition", "1s")
+                $(`.${conPort[i].ticker}`).css("transition", "0.5s")
               }
           }
         },
@@ -152,16 +152,6 @@ $().ready(function(){
     //destroys chart when modal is hidden
     myAggChart.destroy();
   })
-
-  // $('.btn-aggport').on('click', function(){
-  //   myAggChart = new Chart(aggChart,{
-  //     type: 'doughnut',
-  //     data: genData(aggPort),
-  //     options: optionsInd
-  //   })
-  //   myAggChart.data = genData(aggPort);
-  //   myAggChart.update();
-  // })
 
   //function to update user balance based on selected portfolio
   function transferBal(alloc) {
