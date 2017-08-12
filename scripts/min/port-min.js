@@ -43,10 +43,6 @@ function displayInvPortDetails(arr, classname) {
   $(classname).html(portfolioHTML);
 }
 
-var myConChart = {};
-var myModChart = {};
-var myAggChart = {};
-
 $().ready(function(){
 
   //generate chart options for individual portfolio charts
@@ -102,54 +98,70 @@ $().ready(function(){
       },
 
       animation: {
-        duration: 2000,
+        duration: 1500,
       },
   }
   //generate the 3 static portfolio charts:
+
+  var myConChart = {};
+  var myModChart = {};
+  var myAggChart = {};
+
   var conChart = $("#conChart");
-
-  myConChart = new Chart(conChart,{
-    type: 'doughnut',
-    data: [25,25,25,25],
-    options: optionsInd
-  })
-
   var modChart = $("#modChart");
-
-  myModChart = new Chart(modChart,{
-    type: 'doughnut',
-    data: [25,25,25,25],
-    options: optionsInd
-  })
-
   var aggChart = $("#aggChart");
 
-  myAggChart = new Chart(aggChart,{
-    type: 'doughnut',
-    data: [25,25,25,25],
-    options: optionsInd
+  // conservative portfolio modal on shown and on hide
+  $('#modal-con').on('shown.bs.modal',function(){
+    //draws chart when shown
+    myConChart = new Chart(conChart,{
+      type: 'doughnut',
+      data: genData(conPort),
+      options: optionsInd
+    })
+    displayInvPortDetails(conPort, '.con-data')
+  }).on('hidden.bs.modal', function(){
+    //destroys chart when modal is hidden
+    myConChart.destroy();
   })
 
-  //Calls Individual Portfolio functions
-  displayInvPortDetails(conPort, '.con-data')
-  displayInvPortDetails(modPort, '.mod-data')
-  displayInvPortDetails(aggPort, '.agg-data')
-
-  // Refresh the individual portfolios on click
-  $('.btn-conport').on('click', function(){
-    myConChart.data = genData(conPort);
-    myConChart.update();
+  // moderate portfolio modal on shown and on hide
+  $('#modal-mod').on('shown.bs.modal',function(){
+    //draws chart when shown
+    myModChart = new Chart(modChart,{
+      type: 'doughnut',
+      data: genData(modPort),
+      options: optionsInd
+    })
+    displayInvPortDetails(modPort, '.mod-data')
+  }).on('hidden.bs.modal', function(){
+    //destroys chart when modal is hidden
+    myModChart.destroy();
   })
 
-  $('.btn-modport').on('click', function(){
-    myModChart.data = genData(modPort);
-    myModChart.update();
+  // aggressive portfolio modal on shwn and on hide
+  $('#modal-agg').on('shown.bs.modal',function(){
+    //draws chart when shown
+    myAggChart = new Chart(aggChart,{
+      type: 'doughnut',
+      data: genData(aggPort),
+      options: optionsInd
+    })
+    displayInvPortDetails(aggPort, '.agg-data')
+  }).on('hidden.bs.modal', function(){
+    //destroys chart when modal is hidden
+    myAggChart.destroy();
   })
 
-  $('.btn-aggport').on('click', function(){
-    myAggChart.data = genData(aggPort);
-    myAggChart.update();
-  })
+  // $('.btn-aggport').on('click', function(){
+  //   myAggChart = new Chart(aggChart,{
+  //     type: 'doughnut',
+  //     data: genData(aggPort),
+  //     options: optionsInd
+  //   })
+  //   myAggChart.data = genData(aggPort);
+  //   myAggChart.update();
+  // })
 
   //function to update user balance based on selected portfolio
   function transferBal(alloc) {
@@ -169,15 +181,7 @@ $().ready(function(){
     }
     sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
-    // userAccount = []
-    // for (var i = 0; i < conPort.length; i++) {
-    //   var userAcctData = new Account(user.id, conPort[i].ticker, conPort[i].fundname, conPort[i].category, +(conPort[i].balance * userBalance / conPort[i].price).toFixed(3), conPort[i].price, +(conPort[i].balance * userBalance).toFixed(2), conPort[i].color)
-    //   userAccount.push(userAcctData)
-    // }
-    // myPieChart.data = genData(userAccount);
-    // myPieChart.update();
-    // displayMyPortDetails();
-    // addInvInfoListeners();
+
   })
 
   $('#modSelect').on('click',function(){
@@ -187,16 +191,7 @@ $().ready(function(){
     }
     sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
-    // sessionStorage.portAlloc = portAlloc
-    // userAccount = []
-    // for (var i = 0; i < modPort.length; i++) {
-    //   var userAcctData = new Account(user.id, modPort[i].ticker, modPort[i].fundname, modPort[i].category, +(modPort[i].balance * userBalance / modPort[i].price).toFixed(3), modPort[i].price, +(modPort[i].balance * userBalance).toFixed(2), modPort[i].color)
-    //   userAccount.push(userAcctData)
-    // }
-    // myPieChart.data = genData(userAccount);
-    // myPieChart.update();
-    // displayMyPortDetails();
-    // addInvInfoListeners();
+
   })
 
   $('#aggSelect').on('click',function(){
@@ -208,16 +203,7 @@ $().ready(function(){
     sessionStorage.transferBal = transferBal(portAlloc);
     window.location = 'index.html';
 
-    // userAccount = []
-    // for (var i = 0; i < aggPort.length; i++) {
-    //   var userAcctData = new Account(user.id, aggPort[i].ticker, aggPort[i].fundname, aggPort[i].category, +(aggPort[i].balance * userBalance / aggPort[i].price).toFixed(3), aggPort[i].price, +(aggPort[i].balance * userBalance).toFixed(2), aggPort[i].color)
-    //   userAccount.push(userAcctData)
-    // }
-    // myPieChart.data = genData(userAccount);
-    // myPieChart.update();
-    // displayMyPortDetails();
-    // addInvInfoListeners();
   })
-})
+}) //end $().ready
 
 
