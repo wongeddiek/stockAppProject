@@ -28,7 +28,7 @@ function genPortfolioData(bal1, bal2, bal3, bal4, bal5) {
 // creating the 3 portfolio objects
 var conPort = genPortfolioData(0.60, 0.15, 0.10, 0.10, 0.05)
 var modPort = genPortfolioData(0.40, 0.20, 0.15, 0.10, 0.15)
-var aggPort = genPortfolioData(0.15, 0.30, 0.20, 0.20, 0.25)
+var aggPort = genPortfolioData(0.15, 0.30, 0.15, 0.15, 0.25)
 
 // Display Investment Details in Individual Portfolios
 function displayInvPortDetails(arr, classname) {

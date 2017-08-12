@@ -17,41 +17,20 @@ function displayMyPortDetails() {
   $('.data').html(portfolioHTML);
 }
 
-// populate investment modal function
-function invModalInfo(fund) {
-  for (var i = 0; i < userAccount.length; i++) {
-    if (userAccount[i].ticker === fund) {
-      var url = `https://www.morningstar.com/funds/xnas/${userAccount[i].ticker}/quote.html`
-      $('#modal-fundname').html(`<a href=${url} target="_blank">` + userAccount[i].fundname +`</a>`);
-      $('#modal-ticker').html(userAccount[i].ticker);
-      $('#modal-category').html(userAccount[i].category);
-      $('#modal-nav').html(userAccount[i].price);
-      $('#modal-share').html(userAccount[i].share);
-      $('#modal-info').html(`<a href=${url} target="_blank">${url}</a>`);
+// function to add click listener to each investment row and populate investment info in modal
+function addInvInfoListeners(fund) {
+  $(`.${fund}`).on('click', function(){
+    for (var i = 0; i < userAccount.length; i++) {
+      if (userAccount[i].ticker === fund) {
+        var url = `https://www.morningstar.com/funds/xnas/${userAccount[i].ticker}/quote.html`
+        $('#modal-fundname').html(`<a href=${url} target="_blank">` + userAccount[i].fundname +`</a>`);
+        $('#modal-ticker').html(userAccount[i].ticker);
+        $('#modal-category').html(userAccount[i].category);
+        $('#modal-nav').html(userAccount[i].price);
+        $('#modal-share').html(userAccount[i].share);
+        $('#modal-info').html(`<a href=${url} target="_blank">Morningstar</a>`);
+      }
     }
-  }
-}
-
-// add click listener to popuate modal function
-function addInvInfoListeners() {
-  $('.data .VBMFX').on('click', function(){
-    invModalInfo('VBMFX')
-  })
-
-  $('.data .VTSMX').on('click', function(){
-    invModalInfo('VTSMX')
-  })
-
-  $('.data .VIMSX').on('click', function(){
-    invModalInfo('VIMSX')
-  })
-
-  $('.data .NAESX').on('click', function(){
-    invModalInfo('NAESX')
-  })
-
-  $('.data .VGSTX').on('click', function(){
-    invModalInfo('VGSTX')
   })
 }
 
@@ -69,8 +48,10 @@ $().ready(function(){
   // Call Investment Details function
   displayMyPortDetails();
 
-  // populates investment modal information:
-  addInvInfoListeners();
+  // call click listener & populates investment modal information function
+  for (var i = 0; i < userAccount.length; i++) {
+    addInvInfoListeners(userAccount[i].ticker);
+  }
 
   //generate chart options for my portfolio chart
   var options = {
