@@ -1,0 +1,202 @@
+//portfolio object constructor
+function Portfolio(ticker, fundname, category, price, balance, color) {
+  this.ticker = ticker;
+  this.fundname = fundname;
+  this.category = category;
+  this.price = price;
+  this.balance = balance;
+  this.color = color;
+}
+
+// function for creating portfolio objects
+function genPortfolioData(bal1, bal2, bal3, bal4, bal5) {
+
+  var port1 = new Portfolio("VBMFX", "Vanguard Total Bond Market Index", "Bonds", 10.81, bal1, "rgba(9, 82, 86, 1)");
+
+  var port2 = new Portfolio ("VTSMX", "Vanguard Total Stock Market Index", "Large Co. Stocks", 61.63, bal2, "rgba(8, 127, 140, 1)")
+
+  var port3 = new Portfolio("VIMSX", "Vanguard Mid-Cap Index", "Mid Co. Stocks", 39.27, bal3, "rgba(90, 170, 149, 1)")
+
+  var port4 = new Portfolio("NAESX", "Vanguard Small-Cap Index", "Small Co. Stocks", 64.69, bal4, "rgba(134, 168, 115, 1)")
+
+  var port5 = new Portfolio("VGSTX", "Vanguard International Index", "International Stocks", 26.21, bal5, "rgba(187, 159, 6, 1)")
+
+  return [port1, port2, port3, port4, port5]
+}
+
+// create the 3 portfolio objects
+var conPort = genPortfolioData(0.60, 0.15, 0.10, 0.10, 0.05)
+var modPort = genPortfolioData(0.40, 0.20, 0.15, 0.10, 0.15)
+var aggPort = genPortfolioData(0.15, 0.30, 0.15, 0.15, 0.25)
+
+// function to display investment detail rows in individual Portfolios
+function displayInvPortDetails(arr, classname) {
+  var portfolioHTML = "";
+  $(classname).html(portfolioHTML);
+  for (var i = 0; i < arr.length; i++) {
+    var invbalance = (arr[i].balance * 100).toFixed(0) + "%";
+    var progress = +(arr[i].balance * 100).toFixed(2) + "%"
+    portfolioHTML += `<div class="${arr[i].ticker}">${arr[i].category}<span class="pull-right">${invbalance}</span>
+    <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${arr[i].color};"></div></div></div> `
+  }
+  $(classname).html(portfolioHTML);
+}
+
+//run when page loads
+$().ready(function(){
+
+  //generate chart options for individual portfolio charts
+  var optionsInd = {
+    // padding for the chart canvas
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    },
+
+    //pie chart center cutout
+    cutoutPercentage: 30,
+
+    //disable chart legend
+    legend: {
+      display: false,
+    },
+
+    //hover tooltip styling
+    tooltips: {
+      bodyFontSize: 14,
+      caretSize: 0,
+      xPadding: 10,
+      yPadding: 10,
+
+      callbacks: {
+        label: function(tooltipItem, chartData) {
+          return chartData.labels[tooltipItem.index] + " " + " " + ((chartData.datasets[0].data[tooltipItem.index]) * 100) + "%";
+        }
+      }
+    },
+
+    //hover over chart section and animate the corresponding investment detail row
+    hover: {
+      onHover: function(x,y) {
+        if (y[0]) {
+          for (var i = 0; i < conPort.length; i++) {
+            if (y[0]._index === i) {
+              $(`.${conPort[i].ticker}`).css("transform", "scale(1.05,1.05)")
+              $(`.${conPort[i].ticker}`).css("transition", "0.5s")
+            } else {
+              $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
+              $(`.${conPort[i].ticker}`).css("transition", "0.5s")
+            }
+          }
+        }
+        else {
+          for (var i = 0; i < conPort.length; i++) {
+            $(`.${conPort[i].ticker}`).css("transform", "scale(1,1)")
+            $(`.${conPort[i].ticker}`).css("transition", "0.5s")
+          }
+        }
+      },
+    },
+
+    //chart initialize animation duration
+    animation: {
+      duration: 1500,
+    },
+  }
+
+  //generate the 3 static portfolio charts:
+  var myConChart = {};
+  var myModChart = {};
+  var myAggChart = {};
+
+  var conChart = $("#conChart");
+  var modChart = $("#modChart");
+  var aggChart = $("#aggChart");
+
+  // conservative portfolio modal on shown and on hide
+  $('#modal-con').on('shown.bs.modal',function(){
+    //draws chart when shown
+    myConChart = new Chart(conChart,{
+      type: 'doughnut',
+      data: genData(conPort),
+      options: optionsInd
+    })
+    displayInvPortDetails(conPort, '.con-data')
+  }).on('hidden.bs.modal', function(){
+    //destroys chart when modal is hidden
+    myConChart.destroy();
+  })
+
+  // moderate portfolio modal on shown and on hide
+  $('#modal-mod').on('shown.bs.modal',function(){
+    //draws chart when shown
+    myModChart = new Chart(modChart,{
+      type: 'doughnut',
+      data: genData(modPort),
+      options: optionsInd
+    })
+    displayInvPortDetails(modPort, '.mod-data')
+  }).on('hidden.bs.modal', function(){
+    //destroys chart when modal is hidden
+    myModChart.destroy();
+  })
+
+  // aggressive portfolio modal on shwn and on hide
+  $('#modal-agg').on('shown.bs.modal',function(){
+    //draws chart when shown
+    myAggChart = new Chart(aggChart,{
+      type: 'doughnut',
+      data: genData(aggPort),
+      options: optionsInd
+    })
+    displayInvPortDetails(aggPort, '.agg-data')
+  }).on('hidden.bs.modal', function(){
+    //destroys chart when modal is hidden
+    myAggChart.destroy();
+  })
+
+  //function to update user balance based on selected portfolio
+  function transferBal(alloc) {
+    var totalBal = sessionStorage.userBalance
+    var fundBal = []
+    for (var i = 0; i < alloc.length; i++) {
+      fundBal.push(+(alloc[i] * totalBal).toFixed(2))
+    }
+    return fundBal
+  }
+
+  //add click listener to buttons to transfer to a different portfolio
+  $('#conSelect').on('click',function(){
+    var portAlloc = [];
+    for (var i = 0; i < conPort.length; i++) {
+      portAlloc.push(conPort[i].balance)
+    }
+    sessionStorage.transferBal = transferBal(portAlloc);
+    window.location = 'index.html';
+  })
+
+  $('#modSelect').on('click',function(){
+    var portAlloc = []
+    for (var i = 0; i < modPort.length; i++) {
+      portAlloc.push(modPort[i].balance)
+    }
+    sessionStorage.transferBal = transferBal(portAlloc);
+    window.location = 'index.html';
+  })
+
+  $('#aggSelect').on('click',function(){
+
+    var portAlloc = []
+    for (var i = 0; i < aggPort.length; i++) {
+      portAlloc.push(aggPort[i].balance)
+    }
+    sessionStorage.transferBal = transferBal(portAlloc);
+    window.location = 'index.html';
+  })
+}) //end $().ready
+
+
