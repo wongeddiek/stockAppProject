@@ -27,6 +27,7 @@ function invModalInfo(fund) {
       $('#modal-category').html(userAccount[i].category);
       $('#modal-nav').html(userAccount[i].price);
       $('#modal-share').html(userAccount[i].share);
+      $('#modal-info').html(`<a href=${url} target="_blank">${url}</a>`);
     }
   }
 }
@@ -54,6 +55,7 @@ function addInvInfoListeners() {
   })
 }
 
+// initialize pie chart object
 var myPieChart = {};
 
 // run the below when the page loads
@@ -69,7 +71,6 @@ $().ready(function(){
 
   // populates investment modal information:
   addInvInfoListeners();
-
 
   //generate chart options for my portfolio chart
   var options = {
@@ -139,8 +140,5 @@ $().ready(function(){
     data: genData(userAccount),
     options: options
   })
-
-
-
 
 })  //Ends $().ready function
