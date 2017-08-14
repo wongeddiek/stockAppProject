@@ -1,5 +1,6 @@
 body {
   background: linear-gradient(0deg,  RGBA(55, 128, 141, 1.00), RGBA(98, 181, 146, 1.00));
+  font-family: 'Raleway', sans-serif;
 }
 
 h2 {
@@ -95,4 +96,5 @@ h4 {
   background-color: #ffffff;
   color: #000;
   border-radius: 15px;
+  width: 100px;
 }
