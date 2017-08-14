@@ -1,3 +1,13 @@
+/*body {
+  background-color: cornflowerblue;
+}
+
+.navbar {
+  background-color: transparent;
+  background: transparent;
+  border-color: transparent;
+}*/
+
 .navbar-header {
   padding: 0 10px;
 }
@@ -25,7 +35,7 @@
   box-shadow: none;
 }
 
-.data, .con-data, .mod-data, .agg-data {
+.data, .indPort-data, .con-data, .mod-data, .agg-data {
   max-width: 500px;
   margin: 0 auto;
 }
@@ -40,4 +50,14 @@
 
 .modal-header {
   padding: 5px 15px;
+}
+
+.inv-container:hover {
+  transform: scale(1.05, 1.05);
+  transition: 0.5s;
+}
+
+.inv-container, .ind-port-container {
+  transform: scale(1, 1);
+  transition: 0.5s;
 }
