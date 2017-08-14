@@ -2,8 +2,18 @@ body {
   background: linear-gradient(0deg,  RGBA(55, 128, 141, 1.00), RGBA(98, 181, 146, 1.00));
 }
 
+h2 {
+  font-family: 'Oxygen', sans-serif;
+  color: #ffffff;
+}
+
 .fill{
-  min-height: 100vh;
+min-height: 100vh;
+}
+h4 {
+  font-family: 'Raleway', sans-serif;
+  color: #ffffff;
+  margin-top: 75px;
 }
 
 
@@ -65,4 +75,20 @@ body {
 .inv-container, .ind-port-container {
   transform: scale(1, 1);
   transition: 0.5s;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-top: 50px;
+}
+
+.login {
+  margin-top: 100px;
+}
+
+.logInBtn {
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 15px;
 }
