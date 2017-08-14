@@ -98,6 +98,7 @@ h4 {
   padding: 5px 15px;
 }
 
+/*investment detail section styling*/
 .inv-container:hover {
   transform: scale(1.05, 1.05);
   transition: 0.5s;
@@ -106,6 +107,7 @@ h4 {
 .inv-container, .ind-port-container {
   transform: scale(1, 1);
   transition: 0.5s;
+  color: #FFF;
 }
 
 .logo {
@@ -144,6 +146,11 @@ h4 {
     outline: none;
 }
 
+.btn {
+  white-space:normal;
+  word-wrap: break-word;
+}
+
 input {
   border-radius: 25px;
   border-color: white;
@@ -165,6 +172,7 @@ input:focus{
 /*background gradient for the modals*/
 .modal-content {
   background: linear-gradient(0deg,  RGBA(55, 128, 141, 1.00), RGBA(98, 181, 146, 1.00));
+  color: #FFF;
 }
 
 /*portfolio page header*/
@@ -203,6 +211,7 @@ input:focus{
   color: #095256;
 }
 
-.inv-container {
-  color: white;
+/*portfolio modal button*/
+.btn-modal {
+  width: 100%;
 }
