@@ -116,8 +116,25 @@ h4 {
 
 .logInBtn {
   background-color: #ffffff;
-  color: #000;
-  border-radius: 15px;
+  color: #095256;
+  border-radius: 25px;
   border: none;
   width: 100px;
+}
+
+input {
+  border-radius: 25px;
+  border-color: white;
+  border-style: solid;
+  background-color: inherit;
+  padding: .5em;
+  padding-left: .75em;
+}
+
+input::placeholder{
+  color: #CCC;
+}
+
+input:focus{
+  outline: none;
 }
