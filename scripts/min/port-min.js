@@ -267,7 +267,7 @@ $().ready(function(){
       portAlloc.push(port[i].balance)
     }
     sessionStorage.transferBal = transferBal(portAlloc);
-    window.location = 'index.html';
+    window.location = 'myAccount.html';
   })
 }) //end $().ready
 

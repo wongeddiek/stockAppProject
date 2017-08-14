@@ -9,9 +9,9 @@ function displayMyPortDetails() {
   var portfolioHTML = "";
   $('.data').html(portfolioHTML);
   for (var i = 0; i < userAccount.length; i++) {
-    var invbalance = userAccount[i].balance.toFixed(2);
+    var invbalance = currencyFormat.format(userAccount[i].balance);
     var progress = +(userAccount[i].balance / +userBalance * 100).toFixed(2) + "%"
-    portfolioHTML += `<div class="${userAccount[i].ticker} inv-container" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">$${invbalance}</span>
+    portfolioHTML += `<div class="${userAccount[i].ticker} inv-container" data-toggle="modal" data-target="#modal-inv">${userAccount[i].category}<span class="pull-right">${invbalance}</span>
     <div class="progress"><div class="progress-bar" style="width: ${progress}; background-color: ${userAccount[i].color};"></div></div></div> `
   }
   $('.data').html(portfolioHTML);
@@ -44,7 +44,7 @@ $().ready(function(){
   // display formatted date
   $('.today').text(fullDate);
   // Display current account balance
-  $('.acctbalance').text("$" + userBalance);
+  $('.acctbalance').text(currencyFormat.format(userBalance));
 
   // call portfolio detail function to populate portfolio detail rows
   displayMyPortDetails();

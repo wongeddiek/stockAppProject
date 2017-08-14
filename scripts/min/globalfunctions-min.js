@@ -49,4 +49,13 @@ function genData(arr) {
   return data;
 }
 
+//currency formatting function
+var currencyFormat = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+  // the default value for minimumFractionDigits depends on the currency
+  // and is usually already 2
+});
+
 

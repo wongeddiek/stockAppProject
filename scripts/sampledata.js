@@ -62,7 +62,7 @@ function totalBalance(account) {
 }
 
 // creates user total account balance
-var userBalance = totalBalance(userAccount).toFixed(2);
+var userBalance = totalBalance(userAccount);
 
 // update current user shares from stored and update balance
 if (sessionStorage.userShares) {
