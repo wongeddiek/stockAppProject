@@ -10,10 +10,10 @@ h2 {
 .fill{
 min-height: 100vh;
 }
+
 h4 {
   font-family: 'Raleway', sans-serif;
   color: #ffffff;
-  margin-top: 75px;
 }
 
 
@@ -80,7 +80,7 @@ h4 {
 .logo {
   width: 100px;
   height: 100px;
-  margin-top: 50px;
+  margin: 50px 0px;
 }
 
 .login {
