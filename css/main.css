@@ -184,11 +184,11 @@ input:focus{
   margin-bottom: 20px;
 }
 
+/*portfolio page button styling*/
 .btn-container {
   margin-top: 50px;
 }
 
-/*portfolio page button styling*/
 .btn-port {
   min-width: 170px;
   max-width: 100%;
@@ -214,4 +214,9 @@ input:focus{
 /*portfolio modal button*/
 .btn-modal {
   width: 100%;
+}
+
+/*investment modal button*/
+.btn-inv {
+  min-width: 100px;
 }
