@@ -96,5 +96,6 @@ h4 {
   background-color: #ffffff;
   color: #000;
   border-radius: 15px;
+  border: none;
   width: 100px;
 }
