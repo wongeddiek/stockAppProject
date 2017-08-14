@@ -71,6 +71,7 @@ h4 {
 
 .progress {
   background-color: #FFF;
+  border: solid .5px white;
 }
 
 .progress, .progress-bar {
@@ -119,12 +120,6 @@ h4 {
   margin-bottom: 25px;
 }
 
-/*remove default button outline*/
-.btn:focus,.btn:active:focus,.btn.active:focus,
-.btn.focus,.btn:active.focus,.btn.active.focus {
-    outline: none;
-}
-
 .logInBtn {
   background-color: #ffffff;
   color: #095256;
@@ -135,12 +130,6 @@ h4 {
 
 .logInBtn:focus {
   color: #095256;
-}
-
-.logInBtn:active {
-  background: transparent;
-  color: #FFF;
-  border: solid 2px white;
 }
 
 input {
@@ -179,12 +168,11 @@ input:focus{
   margin-top: 50px;
 }
 
-/*portfolio page button styling*/
 .btn-port {
-  min-width: 170px;
-  width: 40%;
+  min-width: 200px;
+  width: 50%;
   border-radius: 25px;
-  border: solid 2px white;
+  border: solid 1px white;
   border-style: solid;
   background: transparent;
   margin-bottom: 20px;
@@ -194,10 +182,15 @@ input:focus{
 .btn-port:hover, .btn-port:focus {
   color: #FFF;
   border-color: #FFF;
+  outline: none;
 }
 
 .btn-port:active {
   box-shadow: none;
-  background: #FFF;
-  color: #095256;
+  outline: none;
+  color: white;
+}
+
+.inv-container {
+  color: white;
 }
