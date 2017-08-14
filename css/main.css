@@ -137,4 +137,5 @@ input::placeholder{
 
 input:focus{
   outline: none;
+  color: white;
 }
