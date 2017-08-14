@@ -132,6 +132,18 @@ h4 {
   color: #095256;
 }
 
+.logInBtn:active {
+  background: transparent;
+  color: #FFF;
+  border: solid 2px white;
+}
+
+/*remove default button outline*/
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none;
+}
+
 input {
   border-radius: 25px;
   border-color: white;
@@ -168,12 +180,12 @@ input:focus{
   margin-top: 50px;
 }
 
+/*portfolio page button styling*/
 .btn-port {
-  min-width: 200px;
-  width: 50%;
+  min-width: 170px;
+  max-width: 100%;
   border-radius: 25px;
-  border: solid 1px white;
-  border-style: solid;
+  border: solid 2px white;
   background: transparent;
   margin-bottom: 20px;
   color: #FFF;
@@ -187,8 +199,8 @@ input:focus{
 
 .btn-port:active {
   box-shadow: none;
-  outline: none;
-  color: white;
+  background: #FFF;
+  color: #095256;
 }
 
 .inv-container {
