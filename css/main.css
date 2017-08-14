@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(0deg,  RGBA(55, 128, 141, 1.00), RGBA(98, 181, 146, 1.00));
+  background: linear-gradient(0deg, RGBA(55, 128, 141, 1.00), RGBA(98, 181, 146, 1.00), RGBA(72, 161, 150, 1.00));
   font-family: 'Raleway', sans-serif;
 }
 
@@ -121,10 +121,32 @@ h4 {
 
 .logInBtn {
   background-color: #ffffff;
-  color: #000;
-  border-radius: 15px;
+  color: #095256;
+  border-radius: 25px;
   border: none;
   width: 100px;
+}
+
+.logInBtn:focus {
+  color: #095256;
+}
+
+input {
+  border-radius: 25px;
+  border-color: white;
+  border-style: solid;
+  background-color: inherit;
+  padding: .5em;
+  padding-left: .75em;
+}
+
+input::placeholder{
+  color: #CCC;
+}
+
+input:focus{
+  outline: none;
+  color: white;
 }
 
 /*background gradient for the modals*/
@@ -150,6 +172,7 @@ h4 {
   width: 50%;
   border-radius: 25px;
   border: solid 1px white;
+  border-style: solid;
   background: transparent;
   margin-bottom: 20px;
   color: #FFF;
@@ -164,4 +187,5 @@ h4 {
 .btn-port:active {
   box-shadow: none;
   outline: none;
+  color: white;
 }
