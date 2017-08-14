@@ -7,7 +7,7 @@
 
     <!-- Google font link -->
     <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700|Raleway:400,600,700" rel="stylesheet">
-    
+
     <!-- JQuery Link -->
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -65,83 +65,22 @@
 
     <!-- Main Section -->
     <div class="container col-sm-8 fill">
-      <div class="">
-        <h3 class="text-center">Leverage Portfolio Options</h3>
+      <div class="header-text">
+        <h3 class="port-header text-center">Leverage Portfolio Options</h3>
         <p>At Leverage, we offer several mutual fund portfolios to suit your needs and investment goals.</p>
         <p>Let us help you decide which portfolio makes the most sense for you!  Click on one of the portoflios below the learn more.</p>
       </div>
-      <!-- button for Conservative Portfolio Modal -->
-      <button class="btn btn-primary btn-conport" data-toggle="modal" data-target="#modal-indPort"><i class="fa fa-lg fa-pie-chart"></i>&nbsp; Conservative Portfolio</button>
 
-      <!-- Conservative Portfolio Modal -->
-      <!-- <div class="modal fade" id="modal-con">
-        <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-body">
-                <p>Conservative Portfolio</p>
-                <div class="container chart">
-                  <canvas id="conChart" width="500" height="500"></canvas>
-                </div>
-                <div class="con-data">
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <button class="btn btn-primary" id="conSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
-              </div>
-          </div>
-        </div>
-      </div> -->
+      <div class="btn-container text-center">
+        <!-- button for Conservative Portfolio Modal -->
+        <button class="btn btn-port btn-conport" data-toggle="modal" data-target="#modal-indPort"><i class="fa fa-lg fa-pie-chart"></i>&nbsp; Conservative Portfolio</button></br>
 
-      <p></p>
+        <!-- button for Moderate Portfolio Modal -->
+        <button class="btn btn-port btn-modport" data-toggle="modal" data-target="#modal-indPort"><i class="fa fa-lg fa-pie-chart"></i>&nbsp; Moderate Portfolio</button></br>
 
-      <!-- button for Moderate Portfolio Modal -->
-      <button class="btn btn-primary btn-modport" data-toggle="modal" data-target="#modal-indPort"><i class="fa fa-lg fa-pie-chart"></i>&nbsp; Moderate Portfolio</button>
-
-      <!-- Moderate Portfolio Modal -->
-      <!-- <div class="modal fade" id="modal-mod">
-        <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-body">
-                <p>Moderate Portfolio</p>
-                <div class="container chart">
-                  <canvas id="modChart" width="500" height="500"></canvas>
-                </div>
-                <div class="mod-data">
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <button class="btn btn-primary" id="modSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
-              </div>
-          </div>
-        </div>
-      </div> -->
-
-      <p></p>
-
-      <!-- button for Agressive Portfolio Modal -->
-      <button class="btn btn-primary btn-aggport" data-toggle="modal" data-target="#modal-indPort"><i class="fa fa-lg fa-pie-chart"></i>&nbsp; Agressive Portfolio</button>
-
-      <!-- Agressive Portfolio Modal -->
-      <!-- <div class="modal fade" id="modal-agg">
-        <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-body">
-                <p>Agressive Portfolio</p>
-                <div class="container chart">
-                  <canvas id="aggChart" width="500" height="500"></canvas>
-                </div>
-                <div class="agg-data">
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <button class="btn btn-primary" id="aggSelect" data-dismiss="modal">Select This Portfolio and Transfer My Balance</button>
-              </div>
-          </div>
-        </div>
-      </div> -->
+        <!-- button for Agressive Portfolio Modal -->
+        <button class="btn btn-port btn-aggport" data-toggle="modal" data-target="#modal-indPort"><i class="fa fa-lg fa-pie-chart"></i>&nbsp; Agressive Portfolio</button></br>
+      </div>
 
       <!-- single modal -->
       <div class="modal fade" id="modal-indPort">

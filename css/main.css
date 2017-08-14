@@ -44,6 +44,11 @@ h4 {
   background-color: transparent !important;
 }
 
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  background: #087F8C;
+  color: #FFF;
+}
+
 .navbar-header {
   padding: 0 10px;
 }
@@ -120,4 +125,43 @@ h4 {
   border-radius: 15px;
   border: none;
   width: 100px;
+}
+
+/*background gradient for the modals*/
+.modal-content {
+  background: linear-gradient(0deg,  RGBA(55, 128, 141, 1.00), RGBA(98, 181, 146, 1.00));
+}
+
+/*portfolio page header*/
+.header-text {
+  color: #FFF;
+}
+
+.port-header {
+  margin-bottom: 20px;
+}
+
+.btn-container {
+  margin-top: 50px;
+}
+
+.btn-port {
+  min-width: 200px;
+  width: 50%;
+  border-radius: 25px;
+  border: solid 1px white;
+  background: transparent;
+  margin-bottom: 20px;
+  color: #FFF;
+}
+
+.btn-port:hover, .btn-port:focus {
+  color: #bb9f06;
+  border-color: #bb9f06;
+  outline: none;
+}
+
+.btn-port:active {
+  box-shadow: none;
+  outline: none;
 }
