@@ -179,8 +179,8 @@ input:focus{
 }
 
 .btn-port:hover, .btn-port:focus {
-  color: #bb9f06;
-  border-color: #bb9f06;
+  color: #FFF;
+  border-color: #FFF;
   outline: none;
 }
 
