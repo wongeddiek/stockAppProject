@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(0deg,  RGBA(55, 128, 141, 1.00), RGBA(98, 181, 146, 1.00));
+  background: linear-gradient(0deg, RGBA(55, 128, 141, 1.00), RGBA(98, 181, 146, 1.00), RGBA(72, 161, 150, 1.00));
   font-family: 'Raleway', sans-serif;
 }
 
@@ -120,6 +120,10 @@ h4 {
   border-radius: 25px;
   border: none;
   width: 100px;
+}
+
+.logInBtn:focus {
+  color: #095256;
 }
 
 input {
