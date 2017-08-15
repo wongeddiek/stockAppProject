@@ -3,18 +3,26 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-h2 {
+h2, h3 {
   font-family: 'Oxygen', sans-serif;
   color: #ffffff;
-}
-
-.fill{
-min-height: 100vh;
 }
 
 h4 {
   font-family: 'Raleway', sans-serif;
   color: #ffffff;
+}
+
+.acct-header {
+  padding-top: 10px;
+}
+
+.acct-header > h4 {
+  font-family: 'Oxygen', sans-serif;
+}
+
+.fill{
+min-height: 100vh;
 }
 
 /*navbar styling*/
