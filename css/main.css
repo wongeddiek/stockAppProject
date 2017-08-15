@@ -176,6 +176,12 @@ input:focus{
   color: #FFF;
 }
 
+/*my account page bottom button styling*/
+.btn-acct-container {
+  max-width: 500px;
+  margin: 10px auto;
+}
+
 /*style links within investment modal*/
 #modal-fundname a, #modal-info a {
   color: #FFF;
@@ -239,4 +245,10 @@ input:focus{
 .btn {
   white-space:normal;
   word-wrap: break-word;
+}
+
+/*my account page button styling*/
+.btn-acct {
+  width: 90%;
+  max-width: 500px;
 }
