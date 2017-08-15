@@ -26,7 +26,7 @@ function genData(arr) {
         'rgba(134, 168, 115, 0.7)',
         'rgba(187, 159, 6, 0.7)',
       ],
-      borderWidth: 5,
+      borderWidth: 2,
       borderColor: [
         'rgba(255,255,255,1)',
         'rgba(255,255,255,1)',
@@ -34,13 +34,21 @@ function genData(arr) {
         'rgba(255,255,255,1)',
         'rgba(255,255,255,1)',
       ],
-      hoverBorderColor: [
-        'rgba(255,255,255,0)',
-        'rgba(255,255,255,0)',
-        'rgba(255,255,255,0)',
-        'rgba(255,255,255,0)',
-        'rgba(255,255,255,0)',
+      hoverBackgroundColor: [
+        'rgba(9, 82, 86, 1)',
+        'rgba(8, 127, 140, 1)',
+        'rgba(90, 170, 149, 1)',
+        'rgba(134, 168, 115, 1)',
+        'rgba(187, 159, 6, 1)',
       ],
+      // hoverBorderColor: [
+      //   'rgba(255,255,255,1)',
+      //   'rgba(255,255,255,1)',
+      //   'rgba(255,255,255,1)',
+      //   'rgba(255,255,255,1)',
+      //   'rgba(255,255,255,1)',
+      // ],
+      hoverBorderWidth: 4,
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs

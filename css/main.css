@@ -219,4 +219,5 @@ input:focus{
 /*investment modal button*/
 .btn-inv {
   min-width: 100px;
+  margin-bottom: 0px;
 }
