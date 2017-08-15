@@ -26,7 +26,7 @@ function addInvInfoListeners(fund) {
         $('#modal-fundname').html(`<a href=${url} target="_blank">` + userAccount[i].fundname +`</a>`);
         $('#modal-ticker').html(userAccount[i].ticker);
         $('#modal-category').html(userAccount[i].category);
-        $('#modal-nav').html(userAccount[i].price);
+        $('#modal-nav').html(currencyFormat.format(userAccount[i].price));
         $('#modal-share').html(userAccount[i].share);
         $('#modal-info').html(`<a href=${url} target="_blank">Morningstar</a>`);
       }
