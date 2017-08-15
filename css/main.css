@@ -152,12 +152,13 @@ min-height: 100vh;
 }
 
 input {
+  min-width: 200px;
   border-radius: 25px;
-  border-color: white;
+  border-color: #FFF;
   border-style: solid;
   background-color: inherit;
-  padding: .5em;
-  padding-left: .75em;
+  padding: .5em 1em;
+  color: #FFF;
 }
 
 input::placeholder{
