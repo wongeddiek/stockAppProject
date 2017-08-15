@@ -175,6 +175,11 @@ input:focus{
   color: #FFF;
 }
 
+/*style links within investment modal*/
+#modal-fundname a, #modal-info a {
+  color: #FFF;
+}
+
 /*portfolio page header*/
 .header-text {
   color: #FFF;

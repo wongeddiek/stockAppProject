@@ -20,11 +20,11 @@ function genData(arr) {
     datasets: [{
       data: genChartData(arr),
       backgroundColor: [
-        'rgba(9, 82, 86, 0.7)',
-        'rgba(8, 127, 140, 0.7)',
-        'rgba(90, 170, 149, 0.7)',
-        'rgba(134, 168, 115, 0.7)',
-        'rgba(187, 159, 6, 0.7)',
+        'rgba(9, 82, 86, 1)',
+        'rgba(8, 127, 140, 1)',
+        'rgba(90, 170, 149, 1)',
+        'rgba(134, 168, 115, 1)',
+        'rgba(187, 159, 6, 1)',
       ],
       borderWidth: 2,
       borderColor: [
@@ -35,11 +35,11 @@ function genData(arr) {
         'rgba(255,255,255,1)',
       ],
       hoverBackgroundColor: [
-        'rgba(9, 82, 86, 1)',
-        'rgba(8, 127, 140, 1)',
-        'rgba(90, 170, 149, 1)',
-        'rgba(134, 168, 115, 1)',
-        'rgba(187, 159, 6, 1)',
+        'rgba(35, 108, 112, 1)',
+        'rgba(24, 153, 166, 1)',
+        'rgba(115, 196, 175, 1)',
+        'rgba(160, 194, 141, 1)',
+        'rgba(213, 185, 32, 1)',
       ],
       // hoverBorderColor: [
       //   'rgba(255,255,255,1)',
