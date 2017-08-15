@@ -17,17 +17,14 @@ h4 {
   color: #ffffff;
 }
 
-
+/*navbar styling*/
 .navbar {
   background-color: transparent;
   background: transparent;
   border-color: transparent;
 }
 
-.navbar-nav > li > a {
-  color: #FFF;
-}
-
+/*hamburger menu lines to white*/
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #FFF;
 }
@@ -36,12 +33,18 @@ h4 {
   border: none;
 }
 
+/*remove hamburger menu background color on focus, hover, active*/
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:active {
+  background-color: transparent !important;
+}
+
+/*preserve white color text on menu items*/
 .navbar-default .navbar-nav > li > a {
   color: #FFF;
 }
 
-.navbar-toggle:hover, .navbar-toggle:focus, .navbar-toggle:active {
-  background-color: transparent !important;
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  color: #FFF;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
@@ -49,26 +52,19 @@ h4 {
   color: #FFF;
 }
 
+/*top navbar left-right padding*/
 .navbar-header {
   padding: 0 10px;
 }
 
+/*chart sizing*/
 .chart {
   max-width: 500px;
   max-height: 500px;
   margin-bottom: 10px;
-  overflow: visible;
 }
 
-#portChart, #conChart, #modChart, #aggChart {
-  overflow: visible;
-}
-
-.side {
-  max-width: 500px;
-  max-height: 500px;
-}
-
+/*investment progress bar styling*/
 .progress {
   background-color: #FFF;
   border: solid .5px white;
@@ -81,7 +77,8 @@ h4 {
   box-shadow: none;
 }
 
-.data, .indPort-data, .con-data, .mod-data, .agg-data {
+/*/investment detail section styling*/
+.data, .indPort-data {
   max-width: 500px;
   margin: 0 auto;
 }
@@ -90,15 +87,6 @@ h4 {
   cursor: pointer;
 }
 
-#modal-fundname {
-  margin-bottom: 20px;
-}
-
-.modal-header {
-  padding: 5px 15px;
-}
-
-/*investment detail section styling*/
 .inv-container:hover {
   transform: scale(1.05, 1.05);
   transition: 0.5s;
@@ -110,6 +98,16 @@ h4 {
   color: #FFF;
 }
 
+/*investment modal styling*/
+#modal-fundname {
+  margin-bottom: 20px;
+}
+
+.modal-header {
+  padding: 5px 15px;
+}
+
+/*login page styling*/
 .logo {
   width: 100px;
   height: 100px;
@@ -138,17 +136,6 @@ h4 {
   background: transparent;
   color: #FFF;
   border: solid 2px white;
-}
-
-/*remove default button outline*/
-.btn:focus,.btn:active:focus,.btn.active:focus,
-.btn.focus,.btn:active.focus,.btn.active.focus {
-    outline: none;
-}
-
-.btn {
-  white-space:normal;
-  word-wrap: break-word;
 }
 
 input {
@@ -225,4 +212,15 @@ input:focus{
 .btn-inv {
   min-width: 100px;
   margin-bottom: 0px;
+}
+
+/*bootstrap btn class styling*/
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none;
+}
+
+.btn {
+  white-space:normal;
+  word-wrap: break-word;
 }
