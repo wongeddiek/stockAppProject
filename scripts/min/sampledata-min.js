@@ -19,18 +19,9 @@ function Account(id, ticker, fundname, category, share, price, balance, color) {
   this.color = color;
 }
 
-//moved to port.js
-function Portfolio(ticker, fundname, category, price, balance, color) {
-  this.ticker = ticker;
-  this.fundname = fundname;
-  this.category = category;
-  this.price = price;
-  this.balance = balance;
-  this.color = color;
-}
 
 // Creates sample user profile
-var user = new User(1, "jdoe@example.com", "123456", "Joe", "Doe")
+var user = new User(1, "jdoe@example.com", "123456", "Joe", "Doe");
 
 // Creates sample user account
 function userAccountData() {
@@ -45,7 +36,7 @@ function userAccountData() {
 
   var user5 = new Account(1, "VGSTX", "Vanguard International Index", "International Stocks", 953.834, 26.21, 25000.00, "rgba(187, 159, 6, 1)");
 
-  return [user1, user2, user3, user4, user5]
+  return [user1, user2, user3, user4, user5];
 
 }
 
@@ -79,7 +70,7 @@ function totalBalance(account) {
 
 // if user selected new portfolio, update user account
 if (sessionStorage.transferBal) {
-  for (var i = 0; i < userAccount.length; i++) {
+  for (let i = 0; i < userAccount.length; i++) {
     userAccount[i].balance = +(sessionStorage.transferBal.split(",")[i]);
     userAccount[i].share = +(userAccount[i].balance / userAccount[i].price).toFixed(3);
   }
