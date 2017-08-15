@@ -49,8 +49,24 @@ function userAccountData() {
 
 }
 
+//function for updating user investment balance
+function userAcctBalance(acct){
+  for (var i = 0; i < acct.length; i++) {
+    acct[i].balance = +(acct[i].price * acct[i].share).toFixed(2);
+  }
+}
+
 // create user account data
 var userAccount = userAccountData();
+userAcctBalance(userAccount);
+
+// update current user shares from stored and update balance
+if (sessionStorage.userShares) {
+  for (var i = 0; i < userAccount.length; i++) {
+    userAccount[i].share = +(sessionStorage.userShares.split(",")[i]);
+    userAcctBalance(userAccount);
+  }
+}
 
 // function to sum all investment balances
 function totalBalance(account) {
@@ -61,17 +77,6 @@ function totalBalance(account) {
   return total;
 }
 
-// creates user total account balance
-var userBalance = totalBalance(userAccount);
-
-// update current user shares from stored and update balance
-if (sessionStorage.userShares) {
-  for (var i = 0; i < userAccount.length; i++) {
-    userAccount[i].share = +(sessionStorage.userShares.split(",")[i]);
-    userAccount[i].balance = +(userAccount[i].price * userAccount[i].share).toFixed(2);
-  }
-}
-
 // if user selected new portfolio, update user account
 if (sessionStorage.transferBal) {
   for (var i = 0; i < userAccount.length; i++) {
@@ -79,6 +84,9 @@ if (sessionStorage.transferBal) {
     userAccount[i].share = +(userAccount[i].balance / userAccount[i].price).toFixed(3);
   }
 }
+
+// creates user total account balance
+var userBalance = totalBalance(userAccount);
 
 //function to store user share amounts
 function getUserShares() {
