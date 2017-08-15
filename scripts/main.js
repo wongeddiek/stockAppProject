@@ -84,7 +84,7 @@ $().ready(function(){
         //customize the tooltip label
         callbacks: {
           label: function(tooltipItem, chartData) {
-            return chartData.labels[tooltipItem.index]
+            return " " + chartData.labels[tooltipItem.index]
             // + " " + " $" + (chartData.datasets[0].data[tooltipItem.index]).toFixed(2);
           }
         }

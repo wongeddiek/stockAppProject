@@ -74,7 +74,7 @@ $().ready(function(){
 
       callbacks: {
         label: function(tooltipItem, chartData) {
-          return chartData.labels[tooltipItem.index] + " " + " " + ((chartData.datasets[0].data[tooltipItem.index]) * 100) + "%";
+          return " " + chartData.labels[tooltipItem.index] + " " + " " + ((chartData.datasets[0].data[tooltipItem.index]) * 100) + "%";
         }
       }
     },
