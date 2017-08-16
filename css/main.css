@@ -100,7 +100,7 @@ min-height: 100vh;
   cursor: pointer;
 }
 
-.inv-container:hover {
+.inv-container:hover, .ind-port-container:hover {
   transform: scale(1.05, 1.05);
   transition: 0.5s;
 }
