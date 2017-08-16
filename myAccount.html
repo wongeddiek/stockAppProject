@@ -23,9 +23,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" charset="utf-8"></script>
 
-    <!-- JavaScript links -->
+    <!-- JavaScript Links -->
     <script src="scripts/min/globalfunctions-min.js" charset="utf-8"></script>
-    <script src="scripts/min/port-min.js" charset="utf-8"></script>
+    <script src="scripts/min/sampledata-min.js" charset="utf-8"></script>
+    <script src="scripts/min/main-min.js" charset="utf-8"></script>
 
     <!-- Bootstrap Links -->
     <!-- Latest compiled and minified CSS -->
@@ -48,8 +49,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="myAccount.html">My Account</a></li>
-            <li class="active"><a href="#">Portfolio</a></li>
+            <li class="active"><a href="#">My Account</a></li>
+            <li><a href="port.html">Portfolio</a></li>
             <li><a href="index.html">Log Out</a></li>
           </ul>
         </div>
@@ -57,49 +58,54 @@
     </div>
     <!-- End Nav bar -->
 
-    <!-- Main Section -->
+    <!-- Main container -->
     <div class="container col-sm-8 fill">
-      <div class="header-text">
-        <h3 class="port-header text-center">Leverage Portfolio Options</h3>
-        <p>At Leverage, we offer several mutual fund portfolios to suit your needs and investment goals.</p>
-        <p>Let us help you decide which portfolio makes the most sense for you!  Click on one of the portoflios below to learn more.</p>
+      <div class="acct-header">
+        <h4 class="text-center">Welcome <span class="username"></span></h4>
+        <h4 class="text-center">Account Balance as of <span class="today"></span></h4>
+        <h2 class="acctbalance text-center"></h2>
+      </div>
+      <!-- User portfolio chart -->
+      <div class="container chart">
+        <canvas id="portChart"></canvas>
+      </div>
+      <!-- User portfolio details -->
+      <div class="container data">
+      </div>
+      <div class="container btn-acct-container text-center">
+        <a class="btn btn-port btn-acct" href="port.html">View our portfolio options</a>
       </div>
 
-      <div class="btn-container text-center">
-        <!-- button for Conservative Portfolio Modal -->
-        <button class="btn-port btn-conport" data-toggle="modal" data-target="#modal-indPort">Conservative</button></br>
+      <!-- Investment detail modal -->
+      <div class="container container-modal">
 
-        <!-- button for Moderate Portfolio Modal -->
-        <button class="btn-port btn-modport" data-toggle="modal" data-target="#modal-indPort">Moderate</button></br>
-
-        <!-- button for Agressive Portfolio Modal -->
-        <button class="btn-port btn-aggport" data-toggle="modal" data-target="#modal-indPort">Agressive</button></br>
       </div>
-
-      <!-- single modal -->
-      <div class="modal fade" id="modal-indPort">
+      <div class="modal fade" id="modal-inv">
         <div class="modal-dialog">
           <div class="modal-content">
-              <div class="modal-body">
-                <p id="indPortTitle"></p>
-                <div class="container chart">
-                  <canvas id="indPortChart" width="500" height="500"></canvas>
-                </div>
-                <div class="indPort-data">
-                </div>
-                <div class="text-center">
-                  <button class="btn btn-port btn-modal" id="indPortSelect" data-dismiss="modal">Transfer my fund balance to this portfolio</button><br>
-                  <a href="#" class="btn btn-port btn-modal" data-dismiss="modal">Return to portfolio options</a>
-                </div>
+              <div class="modal-header">
+                <h5>Investment Information</h5>
               </div>
-              <!-- <div class="modal-footer">
-
-              </div> -->
+              <div class="modal-body">
+                <h5 id="modal-fundname"></h5>
+                <p>Fund Ticker <span id="modal-ticker" class="pull-right"></span></p>
+                <p>Fund Category <span id="modal-category" class="pull-right"></span></p>
+                <p>Current Price <span id="modal-nav" class="pull-right"></span></p>
+                <p>Shares Owned <span id="modal-share" class="pull-right"></span></p>
+                <p>Fund Information <span id="modal-info" class="pull-right"></span></p>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-port btn-inv" data-dismiss="modal">Close</a>
+              </div>
           </div>
         </div>
       </div>
 
     </div>
-    <!-- End right container -->
+    <!-- End left container -->
+
+
+
+
   </body>
 </html>
