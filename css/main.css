@@ -48,7 +48,7 @@ min-height: 100vh;
 
 /*remove hamburger menu background color on focus, hover, active*/
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:active {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 /*preserve white color text on menu items*/
