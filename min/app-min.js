@@ -8,7 +8,7 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 
 app.listen(4000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Example app listening on port 4000!')
 })
 
 
