@@ -20,8 +20,10 @@ function Account(id, ticker, fundname, category, share, price, balance, color) {
 }
 
 
-// Creates sample user profile
+// Create sample user profile
 var user = new User(1, "jdoe@example.com", "123456", "John", "Doe")
+// store user profile to sessionStorage
+sessionStorage.user = user
 
 // Creates sample user account
 function userAccountData() {
@@ -74,7 +76,7 @@ function getFundInfo(url, callback) {
       callback(JSON.parse(dataTrimmed))
     },
     dataType: 'json',
-    async: false
+    // async: false
   })
 }
 
@@ -106,6 +108,8 @@ getFundInfo(fundAPIURL, function(data) {
   priceUpdate(currentFundPrice, userAccount)
   // call function to update user account investment balance
   userAcctBalance(userAccount)
+  //stores userAccount
+  sessionStorage.userAccount = userAccount
 })
 
 
