@@ -21,6 +21,21 @@ h4 {
   font-family: 'Oxygen', sans-serif;
 }
 
+.acct-details {
+  font-family: 'Oxygen', sans-serif;
+  color: #FFF;
+  font-size: 1.2em;
+  max-width: 500px;
+  margin: 0 auto 10px;
+}
+
+#cost-basis, #gain-loss {
+  background-color: #FFF;
+  color: rgba(9, 82, 86, 1);
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+
 .fill{
 min-height: 100vh;
 }

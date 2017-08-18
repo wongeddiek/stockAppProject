@@ -93,11 +93,11 @@ function priceUpdate(price, acct) {
 
 // function to sum all investment balances
 function totalBalance(account) {
-  var total = 0;
+  var total = 0
   for (var i = 0; i < account.length; i++) {
-    total += account[i].balance;
+    total += account[i].balance
   }
-  return total;
+  return total
 }
 
 // call function to create user account data
@@ -118,8 +118,13 @@ getFundInfo(fundAPIURL, function(data) {
   // call function to update user account investment balance
   userAcctBalance(userAccount)
 
+  //create sample user cost basis
+  var userCost = 100000
+
+  //store user cost basis
+  sessionStorage.userCost = userCost
   //store user total balance
-  sessionStorage.userBalance = totalBalance(userAccount);
+  sessionStorage.userBalance = totalBalance(userAccount)
   //stores userAccount
   sessionStorage.userAccount = JSON.stringify(userAccount)
 })
