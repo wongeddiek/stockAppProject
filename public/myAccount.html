@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leverage</title>
+
+    <!-- Google font link -->
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700|Raleway:400,600,700" rel="stylesheet">
+
+    <!-- JQuery Link -->
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Charts.js links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js" charset="utf-8"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" charset="utf-8"></script>
+
+    <!-- JavaScript Links -->
+    <script src="scripts/min/globalfunctions-min.js" charset="utf-8"></script>
+    <script src="scripts/min/main-min.js" charset="utf-8"></script>
+
+    <!-- Bootstrap Links -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- CSS link -->
+    <link rel="stylesheet" href="css/min/main-min.css">
+  </head>
+  <body>
+    <!-- Nav bar -->
+    <div class="navbar navbar-default nav-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">My Account</a></li>
+            <li><a href="port.html">Portfolio</a></li>
+            <li><a href="index.html">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- End Nav bar -->
+
+    <!-- Main container -->
+    <div class="container col-sm-8 fill">
+      <div class="acct-header">
+        <h4 class="text-center">Welcome <span class="username"></span></h4>
+        <h4 class="text-center">Account Balance as of <span class="today"></span></h4>
+        <h2 class="acctbalance text-center"></h2>
+        <div class="row acct-details">
+          <div class="col-xs-6 acct-details-left">
+            Total invested:</br>
+            <span id="cost-basis"></span>
+          </div>
+          <div class="col-xs-6 acct-details-right text-right">
+            Total gain/loss:</br>
+            <span id="gain-loss"></span>
+          </div>
+        </div>
+      </div>
+      <!-- User portfolio chart -->
+      <div class="container chart">
+        <canvas id="portChart"></canvas>
+      </div>
+      <!-- User portfolio details -->
+      <div class="container data">
+      </div>
+      <div class="container btn-acct-container text-center">
+        <a class="btn btn-port btn-acct" href="port.html">View our portfolio options</a>
+      </div>
+
+      <!-- Investment detail modal -->
+      <div class="container container-modal">
+
+      </div>
+      <div class="modal fade" id="modal-inv">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5>Investment Information</h5>
+              </div>
+              <div class="modal-body">
+                <h5 id="modal-fundname"></h5>
+                <p>Fund Ticker <span id="modal-ticker" class="pull-right"></span></p>
+                <p>Fund Category <span id="modal-category" class="pull-right"></span></p>
+                <p>Current Price <span id="modal-nav" class="pull-right"></span></p>
+                <p>Shares Owned <span id="modal-share" class="pull-right"></span></p>
+                <p>Fund Information <span id="modal-info" class="pull-right"></span></p>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-port btn-inv" data-dismiss="modal">Close</a>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- End left container -->
+
+
+
+
+  </body>
+</html>
