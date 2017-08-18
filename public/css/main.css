@@ -31,7 +31,7 @@ h4 {
 
 #cost-basis, #gain-loss {
   background-color: #FFF;
-  color: rgba(9, 82, 86, 1);
+  color: RGBA(8, 127, 140, 1.00);
   padding: 0px 10px;
   border-radius: 10px;
 }
