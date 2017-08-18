@@ -1,3 +1,44 @@
+//get user profile, user account from sessionStroage, and user total balance
+var user = JSON.parse(sessionStorage.user)
+var userAccount = JSON.parse(sessionStorage.userAccount)
+var userBalance = +sessionStorage.userBalance
+
+//function for updating user account investment balance by recalculating share * share price
+//duplicate function from sampledata.js
+function userAcctBalance(acct){
+  for (let i = 0; i < acct.length; i++) {
+    acct[i].balance = +(acct[i].price * acct[i].share).toFixed(2)
+  }
+}
+
+// update current user shares from stored and update balance
+if (sessionStorage.userShares) {
+  for (let i = 0; i < userAccount.length; i++) {
+    userAccount[i].share = (JSON.parse(sessionStorage.userShares)[i]);
+    userAcctBalance(userAccount);
+  }
+}
+
+// if user selected new portfolio, update user account
+if (sessionStorage.transferBal) {
+  for (let i = 0; i < userAccount.length; i++) {
+    userAccount[i].balance = (JSON.parse(sessionStorage.transferBal)[i]);
+    userAccount[i].share = +(userAccount[i].balance / userAccount[i].price).toFixed(3);
+  }
+}
+
+//function to store user share amounts
+function getUserShares() {
+  var shares = [];
+  for (var i = 0; i < userAccount.length; i++) {
+    shares.push(userAccount[i].share);
+  }
+  return shares;
+}
+
+//store user updated users to sessionStorage
+sessionStorage.userShares = JSON.stringify(getUserShares());
+
 
 // creates and format current date in MMM dd yyyy format
 var date = new Date();

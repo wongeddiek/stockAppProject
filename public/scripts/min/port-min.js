@@ -266,7 +266,7 @@ $().ready(function(){
     for (var i = 0; i < port.length; i++) {
       portAlloc.push(port[i].balance);
     }
-    sessionStorage.transferBal = transferBal(portAlloc);
+    sessionStorage.transferBal = JSON.stringify(transferBal(portAlloc));
     window.location = 'myAccount.html';
   });
 }); //end $().ready
