@@ -23,7 +23,7 @@ function Account(id, ticker, fundname, category, share, price, balance, color) {
 // Create sample user profile
 var user = new User(1, "jdoe@example.com", "123456", "John", "Doe")
 // store user profile to sessionStorage
-sessionStorage.user = user
+sessionStorage.user = JSON.stringify(user)
 
 // Creates sample user account
 function userAccountData() {
@@ -91,10 +91,19 @@ function priceUpdate(price, acct) {
   }
 }
 
+// function to sum all investment balances
+function totalBalance(account) {
+  var total = 0;
+  for (var i = 0; i < account.length; i++) {
+    total += account[i].balance;
+  }
+  return total;
+}
+
 // call function to create user account data
 var userAccount = userAccountData()
 
-// call function to create API URL
+// call function to create API URL and object to store fund prices returned by API
 var fundAPIURL = getFundAPIURL(userAccount)
 var currentFundPrice = {}
 
@@ -108,48 +117,9 @@ getFundInfo(fundAPIURL, function(data) {
   priceUpdate(currentFundPrice, userAccount)
   // call function to update user account investment balance
   userAcctBalance(userAccount)
+
+  //store user total balance
+  sessionStorage.userBalance = totalBalance(userAccount);
   //stores userAccount
-  sessionStorage.userAccount = userAccount
+  sessionStorage.userAccount = JSON.stringify(userAccount)
 })
-
-
-// update current user shares from stored and update balance
-if (sessionStorage.userShares) {
-  for (var i = 0; i < userAccount.length; i++) {
-    userAccount[i].share = +(sessionStorage.userShares.split(",")[i]);
-    userAcctBalance(userAccount);
-  }
-}
-
-// function to sum all investment balances
-function totalBalance(account) {
-  var total = 0;
-  for (var i = 0; i < account.length; i++) {
-    total += account[i].balance;
-  }
-  return total;
-}
-
-// if user selected new portfolio, update user account
-if (sessionStorage.transferBal) {
-  for (let i = 0; i < userAccount.length; i++) {
-    userAccount[i].balance = +(sessionStorage.transferBal.split(",")[i]);
-    userAccount[i].share = +(userAccount[i].balance / userAccount[i].price).toFixed(3);
-  }
-}
-
-// creates user total account balance
-var userBalance = totalBalance(userAccount);
-
-//function to store user share amounts
-function getUserShares() {
-  var shares = [];
-  for (var i = 0; i < userAccount.length; i++) {
-    shares.push(userAccount[i].share);
-  }
-  return shares;
-}
-
-//store user shares & total balance
-sessionStorage.userShares = getUserShares();
-sessionStorage.userBalance = userBalance;
