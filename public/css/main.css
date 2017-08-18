@@ -29,6 +29,14 @@ h4 {
   margin: 0 auto 10px;
 }
 
+.acct-details-left {
+  padding-right: 5px;
+}
+
+.acct-details-right {
+  padding-left: 5px;
+}
+
 #cost-basis, #gain-loss {
   background-color: #FFF;
   color: RGBA(8, 127, 140, 1.00);
