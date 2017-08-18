@@ -2,6 +2,14 @@ var express = require('express')
 var app = express()
 var request = require('request')
 var bodyParser = require('body-parser')
+var fs = require('fs')
+
+//creating sample data and send to test.json
+let sampleData = {fname: "Edward", lanme: "Wong"}
+let sampleDataJSON = JSON.stringify(sampleData)
+fs.writeFileSync('json/test.json', sampleDataJSON)
+
+
 
 //redirects to the public directory
 app.use(express.static('public'))
