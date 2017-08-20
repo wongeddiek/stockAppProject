@@ -1,0 +1,7 @@
+[
+  {"id":1,"ticker":"VBMFX","fundname":"Vanguard Total Bond Market Index","category":"Bonds","price":10.81,"share":1387.604,"balance":15000.00,"color":"rgba(9, 82, 86, 1)"},
+  {"id":1,"ticker":"VTSMX","fundname":"Vanguard Total Stock Market Index","category":"Large Co. Stocks","price":61.63,"share":567.905,"balance":35000.00,"color":"rgba(8, 127, 140, 1)"},
+  {"id":1,"ticker":"VIMSX","fundname":"Vanguard Mid-Cap Index","category":"Mid Co. Stocks","price":39.27,"share":381.971,"balance":15000.00,"color":"rgba(90, 170, 149, 1)"},
+  {"id":1,"ticker":"NAESX","fundname":"Vanguard Small-Cap Index","category":"Small Co. Stocks","price":64.69,"share":154.583,"balance":10000.00,"color":"rgba(134, 168, 115, 1)"},
+  {"id":1,"ticker":"VGSTX","fundname":"Vanguard International Index","category":"International Stocks","price":26.21,"share":953.834,"balance":25000.00,"color":"rgba(187, 159, 6, 1)"}
+]
