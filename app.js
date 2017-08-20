@@ -9,6 +9,10 @@ let sampleData = {fname: "Edward", lanme: "Wong"}
 let sampleDataJSON = JSON.stringify(sampleData)
 fs.writeFileSync('json/test.json', sampleDataJSON)
 
+//read from test.json
+let readData = JSON.parse(fs.readFileSync('json/test.json'))
+console.log(readData)
+
 
 
 //redirects to the public directory
