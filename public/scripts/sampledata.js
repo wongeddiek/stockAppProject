@@ -105,17 +105,17 @@ function priceUpdate(price, acct) {
       if (i === obj.ticker) {
         obj.price = +price[i]
       }
-    })
+    });
   }
 }
 
 // function to sum all investment balances
 function totalBalance(account) {
-  var total = 0
+  var total = 0;
   for (var i = 0; i < account.length; i++) {
-    total += account[i].balance
+    total += account[i].balance;
   }
-  return total
+  return total;
 }
 
 //get user Account
