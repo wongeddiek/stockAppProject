@@ -90,8 +90,13 @@ function getFundInfo(url, callback) {
       url: url
     },
     success: function(data) {
-      var dataTrimmed = data.slice(3, -1);
-      callback(JSON.parse(dataTrimmed));
+      console.log(data);
+      if (data.status === 404) {
+        callback(data);
+      } else {
+        var dataTrimmed = data.slice(3, -1);
+        callback(JSON.parse(dataTrimmed));
+      }
     },
     dataType: 'json',
     // async: false
@@ -100,10 +105,10 @@ function getFundInfo(url, callback) {
 
 //function to update user account fund prices
 function priceUpdate(price, acct) {
-  for (i in price) {
+  for (let i in price) {
     acct.forEach(obj => {
       if (i === obj.ticker) {
-        obj.price = +price[i]
+        obj.price = +price[i];
       }
     });
   }
@@ -125,18 +130,27 @@ getLocalData('json/userAccount.json',function(data){
   var fundAPIURL = getFundAPIURL(userAccount);
   // call Google Finance API get request and populate currentFundPrice
   getFundInfo(fundAPIURL, function(data) {
-    var currentFundPrice = {};
-    data.forEach(obj => {
-      currentFundPrice[obj.t] = obj.l;
-    });
-    //call function to update user account's fund price
-    priceUpdate(currentFundPrice, userAccount);
-    // call function to update user account investment balance
-    userAcctBalance(userAccount);
-    //store user total balance
-    sessionStorage.userBalance = totalBalance(userAccount);
-    //stores userAccount
-    sessionStorage.userAccount = JSON.stringify(userAccount);
+    //if get fund info API returns status 404
+    //do session storages and skip price and account balance update
+    if (data.status === 404) {
+      //store user total balance
+      sessionStorage.userBalance = totalBalance(userAccount);
+      //stores userAccount
+      sessionStorage.userAccount = JSON.stringify(userAccount);
+    } else {
+      var currentFundPrice = {};
+      data.forEach(obj => {
+        currentFundPrice[obj.t] = obj.l;
+      });
+      //call function to update user account's fund price
+      priceUpdate(currentFundPrice, userAccount);
+      // call function to update user account investment balance
+      userAcctBalance(userAccount);
+      //store user total balance
+      sessionStorage.userBalance = totalBalance(userAccount);
+      //stores userAccount
+      sessionStorage.userAccount = JSON.stringify(userAccount);
+    }
   });
 });
 

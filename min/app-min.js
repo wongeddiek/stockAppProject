@@ -45,7 +45,12 @@ app.get('/getFundInfo', function (req, res) {
     }
     // Print the response status code if a response was received
     console.log('statusCode:', response && response.statusCode);
-    console.log(body);
+    // console.log(body);
+    // send status 404 if request is not found
+    if (response.statusCode === 404) {
+      res.json({status: response.statusCode});
+      return;
+    }
     // Send response body back to broswer as JSON
     res.setHeader('Content-Type', 'application/json');
     res.json(body);
